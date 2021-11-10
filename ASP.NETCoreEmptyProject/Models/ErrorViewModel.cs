@@ -1,8 +1,6 @@
-﻿
+﻿using System;
 
-using System;
-
-namespace ASP.NET_Core_Project.Models
+namespace ASP.NET_Core_Empty_Project.Models
 {
     public class ErrorViewModel
     {
