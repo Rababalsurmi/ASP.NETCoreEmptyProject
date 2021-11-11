@@ -2,7 +2,8 @@
     ViewData["Title"] = "FeverCheck";
 }
 <div class="text-center">
-    <h3>Check if you have a fever</h3>
+    <h3>Check your temperature</h3>
+    <img src="/imgs/doctor.jpg" width="600" height="300" />
 </div>
 
 @if (ViewBag.Message != null)
@@ -13,13 +14,27 @@
 
 <div class="feverCheck-form">
     <form asp-controller="Doctor" asp-action="FeverCheck" method="post">
+        <div class="row">
+            <div class="col-25">
+                <label> Name </label>
+            </div>
+            <div class="col-75">
+                <input type="text" name="name" />
+            </div>
+        </div>
 
-        <label>Name:</label>
-        <input type="text" name="name" /><br />
+        <div class="row">
+            <div class="col-25">
+                <label> Temperature°C </label>
+            </div>
+            <div class="col-75">
+                <input type="number" name="temperature" />
+            </div>
+        </div>
 
-        <label><br />Temperature °C :</label>
-        <input type="number" name="temperature" /><br />
+        <div class="row">
+            <input type="submit" value="Check" />
+        </div>
 
-        <input type="submit" value="Check Fever" />
     </form>
 </div>

@@ -16,15 +16,28 @@ namespace ASP.NETCoreEmptyProject.Models
         {
             string message;
 
-            if (temperature >= 38.5)
+            if (temperature >= 37.5)
             {
-                message = "You have Fever!";
+                message = Name + " " + "You have Fever! You need to see your doctor!";
+            }
+            else if (temperature <= 35 && temperature >= 32)
+            {
+                message = Name + " " + "You temperature is below average, You have Mild Hypothermia!";
+            }
+            else if (temperature <= 27)
+            {
+                message = Name + " " + "You have severe Hypothermia! You need to see your doctor!";
+            }
+            else if(temperature >= 35.5 && temperature == 37)
+            {
+                message = Name + " " + "Your temperature is normal!";
             }
             else
             {
-                message = "Your  temperature is normal!";
+                message = Name + " " + "Re-enter your temperature!";
             }
             return message;
+            
 
         }
     }
