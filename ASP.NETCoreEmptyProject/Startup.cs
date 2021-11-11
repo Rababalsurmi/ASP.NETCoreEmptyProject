@@ -26,10 +26,20 @@ namespace ASP.NET_Core_Empty_Project
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler("Home/Error");
+
+                app.UseHsts();
+            }
+
+            app.UseHttpsRedirection();
 
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
@@ -37,6 +47,10 @@ namespace ASP.NET_Core_Empty_Project
                     name: "Default",
                     pattern: "{controller=Home}/{action=Index}/{id?}"
                     );
+                endpoints.MapControllerRoute(
+                    name: "doctor",
+                    pattern: "FeverCheck",
+                    defaults: new { Controller = "Doctor", action = "FeverCheck" });
             });
         }
     }

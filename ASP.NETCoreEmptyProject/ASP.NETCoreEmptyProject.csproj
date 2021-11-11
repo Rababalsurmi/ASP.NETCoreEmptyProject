@@ -12,10 +12,12 @@
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
     <Folder Include="Data\" />
+    <Folder Include="Views\Doctor\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Controllers\" />
     <None Remove="Models\" />
     <None Remove="Data\" />
+    <None Remove="Views\Doctor\" />
   </ItemGroup>
 </Project>
