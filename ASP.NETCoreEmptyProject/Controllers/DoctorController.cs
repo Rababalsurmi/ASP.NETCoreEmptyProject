@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ASP.NET_Core_Empty_Project.Models;
 using ASP.NETCoreEmptyProject.Models;
+using Microsoft.AspNetCore.Http;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -31,6 +32,7 @@ namespace ASP.NETCoreEmptyProject.Controllers
         [HttpPost]
         public IActionResult FeverCheck(string name, float temperature)
         {
+            HttpContext.Session.SetString("Name", name);
             FeverCheckModel fc = new FeverCheckModel();
             fc.Name = name;
             fc.Temperature = temperature;

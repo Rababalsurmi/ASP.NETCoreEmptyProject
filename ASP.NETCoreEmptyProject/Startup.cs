@@ -16,6 +16,14 @@ namespace ASP.NET_Core_Empty_Project
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             services.AddControllersWithViews();
         }
 
@@ -41,6 +49,8 @@ namespace ASP.NET_Core_Empty_Project
 
             app.UseAuthorization();
 
+            app.UseSession();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -51,6 +61,10 @@ namespace ASP.NET_Core_Empty_Project
                     name: "doctor",
                     pattern: "FeverCheck",
                     defaults: new { Controller = "Doctor", action = "FeverCheck" });
+                endpoints.MapControllerRoute(
+                    name: "game",
+                    pattern: "GuessingGame",
+                    defaults: new { Controller = "Game", action = "GuessingGame" });
             });
         }
     }

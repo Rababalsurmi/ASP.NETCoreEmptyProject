@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "GuessingGame";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to the Guessing Game </h1>
+    
+    <img src="/imgs/game.jpeg" width="600" height="200" />
+</div>
+
+@if (ViewBag.GameMessage != null)
+{
+    <p>@ViewBag.GameMessage</p>
+}
+<div>
+    <form asp-controller="Game" asp-action="GuessingGame" method="post">
+
+        <div class="row">
+            <div class="col-25">
+                <label> Number </label>
+            </div>
+            <div class="col-75">
+                <input type="number" name="number" />
+            </div>
+        </div>
+
+        <div class="row">
+            <input type="submit" value="Guess" />
+        </div>
+
+    </form>
+</div>

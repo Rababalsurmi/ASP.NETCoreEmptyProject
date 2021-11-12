@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "GetSession";
+}
+@if (ViewBag.SessionMessage != null)
+{
+    <div class="text-center">
+        <h1 class="display-4">@ViewBag.SessionMessage</h1>
+    </div>
+}
+
+
+<script type="text/javascript">function ShowModal() {
+    $("#resultdialog").modal('show');
+}</script>
+
+@model ASP.NETCoreEmptyProject.Models.GuessingGameModel
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="card text-center">
+        <div class="card-header">
+            <h1 class="display-4">Welcome to the Guessing Game </h1>
+            <h3> Guess a number between 1 and 100 </h3>
+            <img src="/imgs/game.jpeg" width="600" height="300" />
+        </div>
+
+        @Html.ValidationMessageFor(x => x.GuessedNum, null, new { @class = "text-danger" })
+        <div class="card-body">
+            <div class="input-group mb-3">
+                @Html.HiddenFor(x => x.RndNum)
+
+                @Html.TextBoxFor(x => x.GuessedNum, new { @class = "form-control" })
+
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary btn-outline-secondary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (Model.ShowResult)
+    {
+        <div class="modal" tabindex="-1" role="dialog" id="resultdialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Result</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>  @ViewBag.Result;</p>
+                    </div>
+                    <div class="modal-footer">
+
+                        @if (Model.Success)
+                        {
+                            <a class="btn text-dark text-center" asp-area="" asp-controller="Game" asp-action="GuessingGame">Start Again</a>
+                        }
+                        else
+                        { <button type="button" class="btn text-dark text-center" data-dismiss="modal">Try again</button>}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>ShowModal();</script>
+    }
+}
+
