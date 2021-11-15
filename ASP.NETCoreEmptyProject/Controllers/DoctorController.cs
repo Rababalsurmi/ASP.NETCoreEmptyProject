@@ -35,7 +35,7 @@ namespace ASP.NETCoreEmptyProject.Controllers
             fc.Name = name;
             fc.Temperature = temperature;
 
-            ViewBag.Message = fc.CheckTemperature(temperature);
+            ViewBag.Message = FeverCheckModel.CheckTemperature(name, temperature);
 
             return View();
         }
