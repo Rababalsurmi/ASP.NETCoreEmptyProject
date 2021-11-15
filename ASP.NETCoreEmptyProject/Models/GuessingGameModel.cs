@@ -22,69 +22,47 @@ namespace ASP.NETCoreEmptyProject.Models
             return "Guess a number between 1 and 100";
         }
 
-        //public void GetGuessNumber()
-        //{
-        //    var random = new Random();
-        //    RndNum = random.Next(1, 100);
-        //}
-
         public string CheckNumber(int guessedNum)
         {
+            string message = "";
+
+            bool run = true;
+            int allowedTries = 5;
+            int numberOfTries = 0;
             var random = new Random();
-            int RndNum = random.Next(1, 100);
+            
 
-            int win = 5;
-            int guess = 1;
-
-            string message = "You are Awesome!" ;
-
-            while (win <= 5)
+            while (run)
             {
+                int RndNum = random.Next(1, 100);
+                numberOfTries++;
                 if (guessedNum == RndNum)
                 {
-                    if (guess == 1)
-                    {
-                        message = "wow In 1st chance you got the number";
-                    }
-                    else
-                        message = "you got the number and no of chance you took are " + guess;
+                    message = "Your guess was correct!";
                     break;
                 }
-                else if(guessedNum < RndNum)
+                else if (guessedNum > RndNum)
                 {
-                    message = "Too Low and number of guesses left are " + (5 - guess);
+                    message = "Your guess was too high";
                 }
-                else if(guessedNum > RndNum)
+                else if (guessedNum < RndNum)
                 {
-                    message = "Too High and number of guesses left are " + (5 - guess);
+                    message = "Your guess was too low";
                 }
-                guess++;
-
-               
-
-                break;
+                else if (numberOfTries == allowedTries)
+                {
+                    message = $"The number was: {RndNum}";
+                    break;
+                }
+                else
+                {
+                    message = $"You have {allowedTries - numberOfTries} tries left. Enter another number: ";
+                }
+                run = false;
             }
-            if (guess == 6)
-            {
-                message = "You loose,Correct Guess is " + RndNum;
-            }
-            return message;
-        }  
 
-        //    while (guessedNum != RndNum)
-        //    {
-        //         if (guessedNum < RndNum)
-        //         {
-        //            message = "Too Low !";
-        //         }
-        //        else
-        //        {
-        //            message = "Too High !";
-        //        }
-
-        //    }
-        //    return message;
-        //}
-
+            return message ;
+        }
+        
     }
 }

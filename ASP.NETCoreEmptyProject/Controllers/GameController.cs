@@ -37,20 +37,23 @@ namespace ASP.NETCoreEmptyProject.Controllers
             GuessingGameModel gModel = new GuessingGameModel();
             gModel.GuessedNum = number;
 
+           
+            HttpContext.Session.SetString("GuessedNumber", ""+number+"");
+
             ViewBag.GameMessage = gModel.CheckNumber(number);
             return View();
-
         }
 
-        public IActionResult SetSession()
-        {
-            HttpContext.Session.SetString("TestSession", "Session was set for 10 minutes!");   
-            return View();
-        }
+        //public IActionResult SetSession()
+        //{
+            
+        //    HttpContext.Session.SetString("TestSession", "Session was set for 10 minutes!");   
+        //    return View();
+        //}
 
         public IActionResult GetSession()
         {
-            ViewBag.SessionMessage = HttpContext.Session.GetString("TestSession");
+            ViewBag.SessionMessage = HttpContext.Session.GetString("GuessedNumber");
             return View();
         }
     }
