@@ -32,12 +32,11 @@ namespace ASP.NETCoreEmptyProject.Controllers
         [HttpPost]
         public IActionResult FeverCheck(string name, float temperature)
         {
-            HttpContext.Session.SetString("Name", name);
             FeverCheckModel fc = new FeverCheckModel();
             fc.Name = name;
             fc.Temperature = temperature;
 
-            ViewBag.Message = fc.CheckTemperature(temperature);
+            ViewBag.Message = FeverCheckModel.CheckTemperature(name, temperature);
 
             return View();
         }
