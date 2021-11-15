@@ -36,11 +36,14 @@ namespace ASP.NETCoreEmptyProject.Controllers
         {
             GuessingGameModel gModel = new GuessingGameModel();
             gModel.GuessedNum = number;
-
+           // int randomNumber = gModel.RndNum;
            
-            HttpContext.Session.SetString("GuessedNumber", ""+number+"");
+            HttpContext.Session.SetString("RandomNumber", ""+ gModel.RndNum + "");
 
             ViewBag.GameMessage = gModel.CheckNumber(number);
+
+            ViewBag.SessionMessage = HttpContext.Session.GetString("RandomNumber");
+
             return View();
         }
 
@@ -53,7 +56,7 @@ namespace ASP.NETCoreEmptyProject.Controllers
 
         public IActionResult GetSession()
         {
-            ViewBag.SessionMessage = HttpContext.Session.GetString("GuessedNumber");
+            ViewBag.SessionMessage = HttpContext.Session.GetString("RandomNumber");
             return View();
         }
     }

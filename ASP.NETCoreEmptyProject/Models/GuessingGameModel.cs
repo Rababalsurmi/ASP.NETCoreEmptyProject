@@ -6,7 +6,7 @@ namespace ASP.NETCoreEmptyProject.Models
     public class GuessingGameModel
     {
         public int RndNum { get; set; }
-
+        public static Random random = new Random();
         [Required]
         [Range(0, 101, ErrorMessage = "The number is between 0 and 100.")]
 
@@ -29,35 +29,47 @@ namespace ASP.NETCoreEmptyProject.Models
             bool run = true;
             int allowedTries = 5;
             int numberOfTries = 0;
-            var random = new Random();
-            
-
+           
             while (run)
             {
-                int RndNum = random.Next(1, 100);
+                int RndNum = random.Next(1, 10);
+                allowedTries--;
                 numberOfTries++;
-                if (guessedNum == RndNum)
+
+                while (true)
                 {
-                    message = "Your guess was correct!";
-                    break;
+                    if (guessedNum == RndNum)
+                    {
+                        message = $"Your guess was correct!" + $"You used { numberOfTries} tries.";
+                        
+                        break;
+                    }
+                    else if (guessedNum > RndNum)
+                    {
+                        message = $"Your guess was too high." + $" You have {allowedTries} tries left. Enter another number: ";
+
+                        break;
+                    }
+                    else if (guessedNum < RndNum)
+                    {
+                        message = $"Your guess was too low." + $" You have {allowedTries} tries left. Enter another number: ";
+                        
+                        break;
+
+                    }
+                    else if (guessedNum != RndNum && allowedTries == 0)
+                    {
+                        message = $"Game Over! The number was: {RndNum}";
+                        break;
+                    }
+                    else
+                    {
+                        message = $"You have {allowedTries - numberOfTries} tries left. Enter another number: ";
+                        break;
+                    }
                 }
-                else if (guessedNum > RndNum)
-                {
-                    message = "Your guess was too high";
-                }
-                else if (guessedNum < RndNum)
-                {
-                    message = "Your guess was too low";
-                }
-                else if (numberOfTries == allowedTries)
-                {
-                    message = $"The number was: {RndNum}";
-                    break;
-                }
-                else
-                {
-                    message = $"You have {allowedTries - numberOfTries} tries left. Enter another number: ";
-                }
+               
+
                 run = false;
             }
 

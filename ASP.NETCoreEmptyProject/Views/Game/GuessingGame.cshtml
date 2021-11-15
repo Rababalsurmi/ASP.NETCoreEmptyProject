@@ -4,9 +4,15 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome to the Guessing Game </h1>
-    
+
     <img src="/imgs/game.jpeg" width="600" height="200" />
 </div>
+@if (ViewBag.SessionMessage != null)
+{
+    <div class="text-center">
+        <h1 class="display-4">@ViewBag.SessionMessage</h1>
+    </div>
+}
 
 @if (ViewBag.GameMessage != null)
 {
