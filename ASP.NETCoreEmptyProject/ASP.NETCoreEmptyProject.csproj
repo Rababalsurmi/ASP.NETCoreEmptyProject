@@ -14,6 +14,7 @@
     <Folder Include="Data\" />
     <Folder Include="Views\Doctor\" />
     <Folder Include="Views\Game\" />
+    <Folder Include="Views\People\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Controllers\" />
@@ -21,5 +22,6 @@
     <None Remove="Data\" />
     <None Remove="Views\Doctor\" />
     <None Remove="Views\Game\" />
+    <None Remove="Views\People\" />
   </ItemGroup>
 </Project>

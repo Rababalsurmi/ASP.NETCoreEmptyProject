@@ -65,6 +65,10 @@ namespace ASP.NET_Core_Empty_Project
                     name: "game",
                     pattern: "GuessingGame",
                     defaults: new { Controller = "Game", action = "GuessingGame" });
+                endpoints.MapControllerRoute(
+                    name: "people",
+                    pattern: "People",
+                    defaults: new { Controller = "People", action = "People" });
             });
         }
     }
