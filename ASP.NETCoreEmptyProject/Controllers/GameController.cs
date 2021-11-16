@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using ASP.NET_Core_Empty_Project.Models;
 using ASP.NETCoreEmptyProject.Models;
 using Microsoft.AspNetCore.Http;
-using GuessTheNumber.ApplicationLayer;
+
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 

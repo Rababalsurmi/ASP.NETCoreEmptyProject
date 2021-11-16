@@ -10,11 +10,7 @@ namespace ASP.NETCoreEmptyProject.Models
         
         public int GuessedNum { get; set; }
 
-        public bool ShowResult { get; set; }
-
-        public bool Success { get; set; }
-
-
+       
 
         public static string WriteMessage()
         {
@@ -35,10 +31,6 @@ namespace ASP.NETCoreEmptyProject.Models
             int numberOfTries = 0;
             
             string message;
-
-            allowedTries--;
-            numberOfTries++;
-
 
             if (guessedNum == RndNum)
             {
