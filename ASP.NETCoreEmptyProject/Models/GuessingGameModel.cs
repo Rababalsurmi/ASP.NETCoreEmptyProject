@@ -7,7 +7,6 @@ namespace ASP.NETCoreEmptyProject.Models
     {
         public int RndNum { get; set; }
         
-        
         public int GuessedNum { get; set; }
 
        
@@ -25,24 +24,19 @@ namespace ASP.NETCoreEmptyProject.Models
 
         public string CheckNumber(int guessedNum)
         {
-            GuessedNum = guessedNum;
-
-            int allowedTries = 5;
-            int numberOfTries = 0;
-            
             string message;
 
             if (guessedNum == RndNum)
             {
-                message = $"Your guess was correct!" + $"You used { numberOfTries} tries.";
+                message = "Your guess was correct!";
             }
             else if (guessedNum > RndNum)
             {
-                message = $"Your guess was too high." + $" You have {allowedTries} tries left. Enter another number: ";
+                message = "Your guess was too high.";
             }
             else
             {
-                message = $"Your guess was too low." + $" You have {allowedTries} tries left. Enter another number: ";
+                message = "Your guess was too low.";
             }
 
             return message;

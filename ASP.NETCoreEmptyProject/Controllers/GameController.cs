@@ -30,10 +30,14 @@ namespace ASP.NETCoreEmptyProject.Controllers
         public IActionResult GuessingGame()
         {
             var model = new GuessingGameModel();
+
             ViewBag.GameMessage = GuessingGameModel.WriteMessage();
+
             model.RandomNumber();
+
             HttpContext.Session.SetString("RandomNumber", "The Random Number is: " + model.RndNum + "");
-            return View(model);
+           
+            return View();
         }
 
         
@@ -41,17 +45,11 @@ namespace ASP.NETCoreEmptyProject.Controllers
         public IActionResult GuessingGame(int number)
         {
             GuessingGameModel gModel = new GuessingGameModel();
-            gModel.GuessedNum = number;
-
-
-            ViewBag.GameMessage = gModel.CheckNumber(number);
             
-
             ViewBag.SessionMessage = HttpContext.Session.GetString("RandomNumber");
+            gModel.GuessedNum = number;
+            ViewBag.GameMessage = gModel.CheckNumber(number);
 
-            //return View();
-
-          
             return View();
         }
 
@@ -62,10 +60,10 @@ namespace ASP.NETCoreEmptyProject.Controllers
         //    return View();
         //}
 
-        public IActionResult GetSession()
-        {
-            ViewBag.SessionMessage = HttpContext.Session.GetString("RandomNumber");
-            return View();
-        }
+        //public IActionResult GetSession()
+        //{
+        //    ViewBag.SessionMessage = HttpContext.Session.GetString("RandomNumber");
+        //    return View();
+        //}
     }
 }
