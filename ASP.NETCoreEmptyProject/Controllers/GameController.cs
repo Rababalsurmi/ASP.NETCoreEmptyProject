@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using ASP.NET_Core_Empty_Project.Models;
 using ASP.NETCoreEmptyProject.Models;
 using Microsoft.AspNetCore.Http;
+using GuessTheNumber.ApplicationLayer;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -31,25 +32,26 @@ namespace ASP.NETCoreEmptyProject.Controllers
             var model = new GuessingGameModel();
             ViewBag.GameMessage = GuessingGameModel.WriteMessage();
             model.RandomNumber();
+            HttpContext.Session.SetString("RandomNumber", "The Random Number is: " + model.RndNum + "");
             return View(model);
         }
 
+        
         [HttpPost]
         public IActionResult GuessingGame(int number)
         {
             GuessingGameModel gModel = new GuessingGameModel();
             gModel.GuessedNum = number;
-           // int randomNumber = gModel.RndNum;
-           
-            HttpContext.Session.SetString("RandomNumber", "The Random Number is: "+ gModel.RndNum + "");
 
-            gModel.RandomNumber();
 
             ViewBag.GameMessage = gModel.CheckNumber(number);
-           
+            
 
             ViewBag.SessionMessage = HttpContext.Session.GetString("RandomNumber");
 
+            //return View();
+
+          
             return View();
         }
 

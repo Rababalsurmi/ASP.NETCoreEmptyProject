@@ -7,12 +7,13 @@ namespace ASP.NETCoreEmptyProject.Models
     {
         public int RndNum { get; set; }
         
-        private int guessedNum;
-        public int GuessedNum { get { return guessedNum; } set { guessedNum = value; } }
+        
+        public int GuessedNum { get; set; }
 
         public bool ShowResult { get; set; }
+
         public bool Success { get; set; }
-        public string Message { get; set;}
+
 
 
         public static string WriteMessage()
@@ -28,44 +29,64 @@ namespace ASP.NETCoreEmptyProject.Models
 
         public string CheckNumber(int guessedNum)
         {
+            GuessedNum = guessedNum;
+
             int allowedTries = 5;
             int numberOfTries = 0;
+            
+            string message;
 
-            string message = "";
+            allowedTries--;
+            numberOfTries++;
 
-            while (guessedNum != RndNum && allowedTries <= 5 && allowedTries >= 0)
+
+            if (guessedNum == RndNum)
             {
-                
-                allowedTries--;
-                numberOfTries++;
-
-                if (guessedNum == RndNum)
-                {
-                    message = $"Your guess was correct!" + $"You used { numberOfTries} tries.";
-                    break;
-                }
-                else if (guessedNum != RndNum)
-                {
-                    if (guessedNum > RndNum)
-                    {
-                        message = $"Your guess was too high." + $" You have {allowedTries} tries left. Enter another number: ";
-                        break;
-                    }
-                    else if (guessedNum < RndNum)
-                    {
-                        message = $"Your guess was too low." + $" You have {allowedTries} tries left. Enter another number: ";
-                        break;
-                    }
-                    else
-                    {
-                        message = $"Game Over! The number was: {RndNum}";
-                        break;
-                    }
-                }
+                message = $"Your guess was correct!" + $"You used { numberOfTries} tries.";
+            }
+            else if (guessedNum > RndNum)
+            {
+                message = $"Your guess was too high." + $" You have {allowedTries} tries left. Enter another number: ";
+            }
+            else
+            {
+                message = $"Your guess was too low." + $" You have {allowedTries} tries left. Enter another number: ";
             }
 
-            return message ;
+            return message;
         }
-        
     }
 }
+
+
+
+
+
+
+//    //while (running)
+//    //{
+
+//    //    allowedTries--;
+//    //    numberOfTries++;
+
+//    //    if (guessedNum == RndNum)
+//    //    {
+//    //        message = $"Your guess was correct!" + $"You used { numberOfTries} tries.";
+//    //        running = false;
+//    //    }
+//    //    else if (guessedNum > RndNum)
+//    //    {
+//    //        message = $"Your guess was too high." + $" You have {allowedTries} tries left. Enter another number: ";
+//    //        break;
+//    //    }
+//    //    else if (guessedNum < RndNum)
+//    //    {
+//    //        message = $"Your guess was too low." + $" You have {allowedTries} tries left. Enter another number: ";
+//    //        break;
+//    //    }
+//    //    else
+//    //    {
+//    //        message = $"Game Over! The number was: {RndNum}";
+//    //        running = false;
+//    //    }
+//    //}
