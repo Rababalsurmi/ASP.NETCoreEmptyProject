@@ -29,14 +29,14 @@ namespace ASP.NETCoreEmptyProject.Controllers
         [HttpGet]
         public IActionResult GuessingGame()
         {
-            var model = new GuessingGameModel();
+            GuessingGameModel model = new GuessingGameModel();
 
-            ViewBag.GameMessage = GuessingGameModel.WriteMessage();
+            ViewBag.GreetingMessage = GuessingGameModel.WriteGameMessage();
 
             model.RandomNumber();
 
             HttpContext.Session.SetString("RandomNumber", "The Random Number is: " + model.RndNum + "");
-           
+
             return View();
         }
 
@@ -44,11 +44,10 @@ namespace ASP.NETCoreEmptyProject.Controllers
         [HttpPost]
         public IActionResult GuessingGame(int number)
         {
-            GuessingGameModel gModel = new GuessingGameModel();
-            
+
+            ViewBag.GameMessage = GuessingGameModel.CheckNumber(number);
+
             ViewBag.SessionMessage = HttpContext.Session.GetString("RandomNumber");
-            gModel.GuessedNum = number;
-            ViewBag.GameMessage = gModel.CheckNumber(number);
 
             return View();
         }

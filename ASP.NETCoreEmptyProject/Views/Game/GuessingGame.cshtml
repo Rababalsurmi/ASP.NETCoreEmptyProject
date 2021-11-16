@@ -14,7 +14,10 @@
         <h4>@ViewBag.SessionMessage</h4>
     </div>
 }
-
+@if (ViewBag.GreetingMessage != null)
+{
+    <p>@ViewBag.GreetingMessage</p>
+}
 @if (ViewBag.GameMessage != null)
 {
     <p>@ViewBag.GameMessage</p>

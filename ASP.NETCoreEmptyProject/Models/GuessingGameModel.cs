@@ -11,7 +11,7 @@ namespace ASP.NETCoreEmptyProject.Models
 
        
 
-        public static string WriteMessage()
+        public static string WriteGameMessage()
         {
             return "Guess a Number between 1 and 100! You have 5 tries!";
         }
@@ -22,21 +22,29 @@ namespace ASP.NETCoreEmptyProject.Models
             RndNum = random.Next(1, 100);
         }
 
-        public string CheckNumber(int guessedNum)
+        public static string CheckNumber(int guessedNum)
         {
+            GuessingGameModel gmodel = new GuessingGameModel();
+
+            int random = gmodel.RndNum;
+          
             string message;
 
-            if (guessedNum == RndNum)
+            if (guessedNum == random)
             {
                 message = "Your guess was correct!";
             }
-            else if (guessedNum > RndNum)
+            else if (guessedNum > random)
             {
                 message = "Your guess was too high.";
             }
-            else
+            else if (guessedNum < random)
             {
                 message = "Your guess was too low.";
+            }
+            else
+            {
+                message = "Game Over!";
             }
 
             return message;
