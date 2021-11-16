@@ -7,8 +7,7 @@ namespace ASP.NETCoreEmptyProject.Models
     {
         public int RndNum { get; set; }
         public static Random random = new Random();
-        [Required]
-        [Range(0, 101, ErrorMessage = "The number is between 0 and 100.")]
+        
 
         private int guessedNum;
         public int GuessedNum { get { return guessedNum; } set { guessedNum = value; } }
@@ -19,7 +18,7 @@ namespace ASP.NETCoreEmptyProject.Models
 
         public static string WriteMessage()
         {
-            return "Guess a number between 1 and 100";
+            return "Guess a Number between 1 and 100! You have 5 tries!";
         }
 
         public string CheckNumber(int guessedNum)
@@ -32,16 +31,18 @@ namespace ASP.NETCoreEmptyProject.Models
            
             while (run)
             {
-                int RndNum = random.Next(1, 10);
-                allowedTries--;
-                numberOfTries++;
+                int RndNum = random.Next(1, 100);
+               
 
                 while (true)
                 {
+                    allowedTries--;
+                    numberOfTries++;
+
                     if (guessedNum == RndNum)
                     {
                         message = $"Your guess was correct!" + $"You used { numberOfTries} tries.";
-                        
+                       
                         break;
                     }
                     else if (guessedNum > RndNum)

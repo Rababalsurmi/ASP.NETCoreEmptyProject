@@ -38,7 +38,7 @@ namespace ASP.NETCoreEmptyProject.Controllers
             gModel.GuessedNum = number;
            // int randomNumber = gModel.RndNum;
            
-            HttpContext.Session.SetString("RandomNumber", ""+ gModel.RndNum + "");
+            HttpContext.Session.SetString("RandomNumber", "The Random Number is: "+ gModel.RndNum + "");
 
             ViewBag.GameMessage = gModel.CheckNumber(number);
 
