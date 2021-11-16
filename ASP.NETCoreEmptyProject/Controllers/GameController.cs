@@ -24,11 +24,14 @@ namespace ASP.NETCoreEmptyProject.Controllers
 
         // GET: /<controller>/
 
-        
+
+        [HttpGet]
         public IActionResult GuessingGame()
         {
+            var model = new GuessingGameModel();
             ViewBag.GameMessage = GuessingGameModel.WriteMessage();
-            return View();
+            model.RandomNumber();
+            return View(model);
         }
 
         [HttpPost]
@@ -40,7 +43,10 @@ namespace ASP.NETCoreEmptyProject.Controllers
            
             HttpContext.Session.SetString("RandomNumber", "The Random Number is: "+ gModel.RndNum + "");
 
+            gModel.RandomNumber();
+
             ViewBag.GameMessage = gModel.CheckNumber(number);
+           
 
             ViewBag.SessionMessage = HttpContext.Session.GetString("RandomNumber");
 
