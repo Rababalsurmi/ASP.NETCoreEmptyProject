@@ -42,21 +42,23 @@ namespace ASP.NETCoreEmptyProject.Controllers
 
         
         [HttpPost]
-        public IActionResult GuessingGame(GuessingGameModel gmodel)
+        public IActionResult GuessingGame(int number)
         {
-            int number = gmodel.GuessedNum;
-            
-            //var random = model.RndNum;
+            GuessingGameModel gmodel = new GuessingGameModel();
+           
+
+            //gmodel.RandomNumber();
 
             ViewBag.SessionMessage = HttpContext.Session.GetString("RandomNumber");
 
             if (ModelState.IsValid)
             {
-                ViewBag.GameMessage = gmodel.CheckNumber(number);
+
+                ViewBag.GameMessage = gmodel.CheckNumber(number, gmodel.RndNum);
             }
             
 
-            return View();
+            return View(gmodel);
         }
 
         //public IActionResult SetSession()
