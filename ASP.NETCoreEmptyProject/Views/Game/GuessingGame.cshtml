@@ -8,13 +8,24 @@
 <div class="text-center">
     <img src="/imgs/game.jpeg" width="400" height="150" />
 </div>
-@if (ViewBag.SessionMessage != null)
+@if (ViewBag.SessionMessageRandom != null)
 {
     <div>
-        <h4>@ViewBag.SessionMessage</h4>
+        <h4>The Random Number is: @ViewBag.SessionMessageRandom</h4>
+
     </div>
 }
+@if (ViewBag.SessionMessageUser != null)
+{
+    <div>
 
+        <h4>The User Number is: @ViewBag.SessionMessageUser</h4>
+    </div>
+}
+@if (ViewBag.GreetingMessage != null)
+{
+    <p>@ViewBag.GreetingMessage</p>
+}
 @if (ViewBag.GameMessage != null)
 {
     <p>@ViewBag.GameMessage</p>
