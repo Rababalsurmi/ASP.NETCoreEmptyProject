@@ -1,9 +1,9 @@
 ﻿using System;
 namespace ASP.NETCoreEmptyProject.Models
 {
-    public class PeopleModel
+    public class PeopleViewModel
     {
-        public PeopleModel()
+        public PeopleViewModel()
         {
         }
     }

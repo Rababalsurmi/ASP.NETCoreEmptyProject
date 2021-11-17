@@ -1,7 +1,29 @@
-﻿@{
+﻿@model ASP.NETCoreEmptyProject.Models.Person
+
+@{
     ViewData["Title"] = "People";
 }
 <div class="text-center">
     <h3>People</h3>
-    
 </div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>City</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ASP.NETCoreEmptyProject.Models.Person.listOfPeople)
+         {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Phone</td>
+                <td>@item.City</td>
+            </tr>
+         }
+
+    </tbody>
+</table>

@@ -68,7 +68,7 @@ namespace ASP.NET_Core_Empty_Project
                 endpoints.MapControllerRoute(
                     name: "people",
                     pattern: "People",
-                    defaults: new { Controller = "People", action = "People" });
+                    defaults: new { Controller = "People", action = "PeopleIndex" });
             });
         }
     }
