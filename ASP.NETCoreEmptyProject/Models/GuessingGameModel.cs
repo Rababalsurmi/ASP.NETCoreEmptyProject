@@ -22,33 +22,35 @@ namespace ASP.NETCoreEmptyProject.Models
             RndNum = random.Next(1, 100);
         }
 
-        public static string CheckNumber(int guessedNum)
-        {
-            GuessingGameModel gmodel = new GuessingGameModel();
 
-            int random = gmodel.RndNum;
+        //public  string CheckNumber(int guessedNum)
+        //{
           
-            string message;
+        //    //GuessingGameModel gmodel = new GuessingGameModel();
 
-            if (guessedNum == random)
-            {
-                message = "Your guess was correct!";
-            }
-            else if (guessedNum > random)
-            {
-                message = "Your guess was too high.";
-            }
-            else if (guessedNum < random)
-            {
-                message = "Your guess was too low.";
-            }
-            else
-            {
-                message = "Game Over!";
-            }
+        //    //int random = gmodel.RndNum;
 
-            return message;
-        }
+        //    string message;
+
+        //    if (guessedNum == RndNum)
+        //    {
+        //        message = "Your guess was correct!";
+        //    }
+        //    else if (guessedNum > RndNum)
+        //    {
+        //        message = "Your guess was too high.";
+        //    }
+        //    else if (guessedNum < RndNum)
+        //    {
+        //        message = "Your guess was too low.";
+        //    }
+        //    else
+        //    {
+        //        message = "Game Over!";
+        //    }
+
+        //    return message;
+        //}
     }
 }
 

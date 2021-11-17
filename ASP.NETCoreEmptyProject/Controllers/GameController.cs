@@ -34,7 +34,7 @@ namespace ASP.NETCoreEmptyProject.Controllers
             ViewBag.GreetingMessage = GuessingGameModel.WriteGameMessage();
 
             model.RandomNumber();
-
+            
             HttpContext.Session.SetString("RandomNumber", "The Random Number is: " + model.RndNum + "");
 
             return View();
@@ -42,12 +42,17 @@ namespace ASP.NETCoreEmptyProject.Controllers
 
         
         [HttpPost]
-        public IActionResult GuessingGame(int number)
+        public IActionResult GuessingGame(GuessingGameModel model)
         {
+            int number = model.GuessedNum;
 
-            ViewBag.GameMessage = GuessingGameModel.CheckNumber(number);
-
+          
+            
+            //var random = model.RndNum;
+            
             ViewBag.SessionMessage = HttpContext.Session.GetString("RandomNumber");
+
+            ViewBag.GameMessage = model.CheckNumber(number);
 
             return View();
         }
