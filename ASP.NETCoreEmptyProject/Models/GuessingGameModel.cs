@@ -13,7 +13,7 @@ namespace ASP.NETCoreEmptyProject.Models
 
         public static string WriteGameMessage()
         {
-            return "Guess a Number between 1 and 100! You have 5 tries!";
+            return "Guess a Number between 1 and 100!";
         }
 
         public void RandomNumber()
@@ -43,11 +43,6 @@ namespace ASP.NETCoreEmptyProject.Models
 
         public  string CheckNumber(int guessedNum)
         {
-
-            //GuessingGameModel gmodel = new GuessingGameModel();
-            //gmodel. RandomNumber();
-            //int random = gmodel.RndNum;
-
             string message;
 
             if (guessedNum == RndNum)
