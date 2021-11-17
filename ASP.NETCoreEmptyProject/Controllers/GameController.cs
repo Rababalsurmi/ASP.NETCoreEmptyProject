@@ -29,13 +29,13 @@ namespace ASP.NETCoreEmptyProject.Controllers
         [HttpGet]
         public IActionResult GuessingGame()
         {
-            GuessingGameModel model = new GuessingGameModel();
-
             ViewBag.GreetingMessage = GuessingGameModel.WriteGameMessage();
 
-            model.RandomNumber();
+            Random random = new Random();
+            int RndNum = random.Next(1, 100);
+
+            HttpContext.Session.SetInt32("RandomNumber", RndNum);
             
-            HttpContext.Session.SetString("RandomNumber", "The Random Number is: " + model.RndNum + "");
 
             return View();
         }
@@ -45,20 +45,32 @@ namespace ASP.NETCoreEmptyProject.Controllers
         public IActionResult GuessingGame(int number)
         {
             GuessingGameModel gmodel = new GuessingGameModel();
-           
 
-            //gmodel.RandomNumber();
 
-            ViewBag.SessionMessage = HttpContext.Session.GetString("RandomNumber");
+            ViewBag.SessionMessageRandom = HttpContext.Session.GetInt32("RandomNumber");
 
-            if (ModelState.IsValid)
+            HttpContext.Session.SetInt32("UserNumber", number);
+            ViewBag.SessionMessageUser = HttpContext.Session.GetInt32("UserNumber");
+
+            var rnd =  HttpContext.Session.GetInt32("RandomNumber");
+            var userInput = HttpContext.Session.GetInt32("UserNumber");
+
+
+            if (rnd == userInput)
             {
-
-                ViewBag.GameMessage = gmodel.CheckNumber(number, gmodel.RndNum);
+                ViewBag.GameMessage = gmodel.Success();
             }
-            
+            else if (rnd > userInput)
+            {
+                ViewBag.GameMessage = gmodel.WasLow();
+            }
+            else if (rnd < userInput)
+            {
+                ViewBag.GameMessage = gmodel.WasHigh();
+            }
 
-            return View(gmodel);
+
+            return View();
         }
 
         //public IActionResult SetSession()

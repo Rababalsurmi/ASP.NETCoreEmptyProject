@@ -22,8 +22,26 @@ namespace ASP.NETCoreEmptyProject.Models
             RndNum = random.Next(1, 100);
         }
 
+        public string Success()
+        {
+            string message = "Your guess was correct!";
 
-        public  string CheckNumber(int guessedNum, int RndNum)
+            return message;
+        }
+        public string WasLow()
+        {
+            string message = "Your guess was too low!";
+
+            return message;
+        }
+        public string WasHigh()
+        {
+            string message = "Your guess was too High!";
+
+            return message;
+        }
+
+        public  string CheckNumber(int guessedNum)
         {
 
             //GuessingGameModel gmodel = new GuessingGameModel();
