@@ -11,10 +11,17 @@ namespace ASP.NETCoreEmptyProject.Models
 
 
 
+<<<<<<< Updated upstream
             public static string WriteGameMessage()
             {
                 return "Guess a Number between 1 and 100!";
             }
+=======
+        public static string WriteGameMessage()
+        {
+            return "Guess a Number between 1 and 100! You have 5 tries!";
+        }
+>>>>>>> Stashed changes
 
             public void RandomNumber()
             {
