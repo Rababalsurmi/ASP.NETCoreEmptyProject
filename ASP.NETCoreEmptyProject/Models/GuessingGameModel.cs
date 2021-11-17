@@ -11,44 +11,38 @@ namespace ASP.NETCoreEmptyProject.Models
 
 
 
-<<<<<<< Updated upstream
-            public static string WriteGameMessage()
-            {
-                return "Guess a Number between 1 and 100!";
-            }
-=======
         public static string WriteGameMessage()
         {
-            return "Guess a Number between 1 and 100! You have 5 tries!";
+            return "Guess a Number between 1 and 100! ";
         }
->>>>>>> Stashed changes
 
-            public void RandomNumber()
-            {
-                Random random = new Random();
-                RndNum = random.Next(1, 100);
-            }
 
-            public string Success()
-            {
-                string message = "Your guess was correct!";
+        public void RandomNumber()
+        {
+            Random random = new Random();
+            RndNum = random.Next(1, 100);
+        }
 
-                return message;
-            }
+        public string Success()
+        {
+            string message = "Your guess was correct!";
 
-            public string WasLow()
-            {
-                string message = "Your guess was too low!";
+            return message;
+        }
 
-                return message;
-            }
+        public string WasLow()
+        {
+            string message = "Your guess was too low!";
 
-            public string WasHigh()
-            {
-                string message = "Your guess was too High!";
+            return message;
+        }
 
-                return message;
-            }
+        public string WasHigh()
+        {
+            string message = "Your guess was too High!";
+
+            return message;
+        }
 
            
         

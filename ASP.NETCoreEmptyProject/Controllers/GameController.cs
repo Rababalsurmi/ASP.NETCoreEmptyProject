@@ -24,40 +24,67 @@ namespace ASP.NETCoreEmptyProject.Controllers
 
         // GET: /<controller>/
 
-        
+
+
+        [HttpGet]
         public IActionResult GuessingGame()
         {
-            ViewBag.GameMessage = GuessingGameModel.WriteMessage();
+            ViewBag.GreetingMessage = GuessingGameModel.WriteGameMessage();
+
+            Random random = new Random();
+            int RndNum = random.Next(1, 100);
+
+            HttpContext.Session.SetInt32("RandomNumber", RndNum);
+
+
             return View();
         }
+
 
         [HttpPost]
         public IActionResult GuessingGame(int number)
         {
-            GuessingGameModel gModel = new GuessingGameModel();
-            gModel.GuessedNum = number;
-           // int randomNumber = gModel.RndNum;
-           
-            HttpContext.Session.SetString("RandomNumber", "The Random Number is: "+ gModel.RndNum + "");
+            GuessingGameModel gmodel = new GuessingGameModel();
 
-            ViewBag.GameMessage = gModel.CheckNumber(number);
 
-            ViewBag.SessionMessage = HttpContext.Session.GetString("RandomNumber");
+            ViewBag.SessionMessageRandom = HttpContext.Session.GetInt32("RandomNumber");
+
+            HttpContext.Session.SetInt32("UserNumber", number);
+            ViewBag.SessionMessageUser = HttpContext.Session.GetInt32("UserNumber");
+
+            var rnd = HttpContext.Session.GetInt32("RandomNumber");
+            var userInput = HttpContext.Session.GetInt32("UserNumber");
+
+
+            if (rnd == userInput)
+            {
+                ViewBag.GameMessage = gmodel.Success();
+            }
+            else if (rnd > userInput)
+            {
+                ViewBag.GameMessage = gmodel.WasLow();
+            }
+            else if (rnd < userInput)
+            {
+                ViewBag.GameMessage = gmodel.WasHigh();
+            }
+
 
             return View();
         }
 
+
         //public IActionResult SetSession()
         //{
-            
+
         //    HttpContext.Session.SetString("TestSession", "Session was set for 10 minutes!");   
         //    return View();
         //}
 
-        public IActionResult GetSession()
-        {
-            ViewBag.SessionMessage = HttpContext.Session.GetString("RandomNumber");
-            return View();
-        }
+        //public IActionResult GetSession()
+        //{
+        //    ViewBag.SessionMessage = HttpContext.Session.GetString("RandomNumber");
+        //    return View();
+        //}
     }
 }
