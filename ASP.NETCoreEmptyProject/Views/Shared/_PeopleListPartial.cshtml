@@ -1,0 +1,31 @@
+﻿@model List<ASP.NETCoreEmptyProject.Models.Person>
+
+<div class="container">
+    <h2>List of People</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Person ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>City</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var person in Model)
+            {
+            <tr>
+                <td>@person.PersonId</td>
+                <td>@person.Name</td>
+                <td>@person.Phone</td>
+                <td>@person.City</td>
+                <td><a href="#" onclick="location.href =
+        '@Url.Action("DeletePerson", "Person", new {id=person.PersonId } )' ">Delete</a></td>
+            </tr>
+            }
+        </tbody>
+
+    </table>
+</div>

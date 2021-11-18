@@ -69,9 +69,9 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
-/* Check fever form styles
+/* Check form styles
   -------------------------------------------------------*/
-.feverCheck-form {
+.form {
     background-color: Gainsboro;
     width: 800px;
     margin: 10px;
@@ -95,7 +95,7 @@ input[type=submit] {
     margin: 4px 2px;
     border-radius: 4px;
     cursor: pointer;
-    float: right;
+/*    float: right;*/
 }
 input[type=submit]:hover {
     background-color: #45a049;

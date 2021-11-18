@@ -1,21 +1,86 @@
-﻿@{
-    ViewData["Title"] = "PeopleIndex";
+﻿@model ASP.NETCoreEmptyProject.Models.PeopleViewModel
+@{
+    ViewData["Title"] = "People Page";
 }
 <div class="text-center">
     <h3>People Index</h3>
     
 </div>
 
-<div>
+<!--<div>
     <h1> List of People</h1>
 
-    <ul>
+    <ul>-->
         @*<li>
             <a class="btn btn-primary" asp-controller="People" asp-action="People">People</a>
         </li>*@
-        <li>
+        <!--<li>
             <a class="btn btn-primary" asp-controller="People" asp-action="ListAllPeople">People Model</a>
         </li>
+        
     </ul>
 
+</div>-->
+<div class="container">
+    <div>
+        <form class="form" asp-action="PeopleIndex" method="post" role="form">
+            @Html.AntiForgeryToken()
+            <h3>Filter</h3>
+
+            <div class="row">
+                <div class="col-25">
+                    <label asp.for="FilterString">Filter String</label>
+                </div>
+                <div class="col-75">
+                    <input asp.for="FilterString" required />
+                </div>
+            </div>
+            <div class="row">
+                <input type="submit" class="btn btn-primary" name="btnFilter" value="Search" />
+            </div>
+        </form>
+    </div>
+
+    <div>
+        <form class="form" asp-action="CreatePerson" method="post" role="form">
+            @Html.AntiForgeryToken()
+            <div>
+                <h3><b>Create a new person</b></h3>
+                <div class="row">
+                    <div class="col-25">
+                        <label asp.for="Name">Name</label>
+                    </div>
+                    <div class="col-75">
+                        <input asp.for="Name" />
+                        <span style="color: red" asp-validation-for="Name"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label asp.for="Phone">Phone</label>
+                    </div>
+                    <div class="col-75">
+                        <input asp.for="Phone" />
+                        <span style="color: red" asp-validation-for="Phone"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label asp.for="City">City</label>
+                    </div>
+                    <div class="col-75">
+                        <input asp.for="City" />
+                        <span style="color: red" asp-validation-for="City"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <input type="submit" class="btn btn-primary" name="btnCreatePerson" value="Add Person" />
+            </div>
+        </form>
+    </div>
+
+    <div class="container">
+        <partial name="_PeopleListPartial" model="Model.PeopleListView" />
+    </div>
 </div>

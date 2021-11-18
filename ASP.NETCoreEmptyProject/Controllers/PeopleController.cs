@@ -50,10 +50,45 @@ namespace ASP.NETCoreEmptyProject.Controllers
             return View(viewModel);
         }
 
-        public IActionResult CreatePerson()
+        [HttpPost]
+        public IActionResult CreatePerson(CreatePersonViewModel cPersonViewModel)
         {
+            PeopleViewModel newViewModel = new PeopleViewModel();
 
-            return View();
+            PersonMemory personMemory = new PersonMemory();
+
+            if(ModelState.IsValid)
+            {
+                newViewModel.Name = cPersonViewModel.Name;
+                newViewModel.Phone = cPersonViewModel.Phone;
+                newViewModel.City = cPersonViewModel.City;
+
+                newViewModel.PeopleListView = personMemory.Read();
+
+                personMemory.Create(cPersonViewModel.Name, cPersonViewModel.Phone, cPersonViewModel.City);
+                ViewBag.Message = "A new Person was added Successfully";
+
+                return View("PeopleIndex", newViewModel);
+            }
+
+            ViewBag.Message = "Failed to add a new person!" + ModelState.Values;
+
+            return View("PeopleIndex", newViewModel);
+        }
+
+        public IActionResult DeletePerson(int id)
+        {
+            PersonMemory personMemory = new PersonMemory();
+
+            Person targetPerson = personMemory.Read(id);
+            personMemory.Delet(targetPerson);
+
+            return RedirectToAction("PeopleIndex");
+        }
+
+        public PartialViewResult PeopleList()
+        {
+            return PartialView("_PeopleListPartial");
         }
 
         public IActionResult People()
