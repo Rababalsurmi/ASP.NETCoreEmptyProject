@@ -132,3 +132,9 @@ label {
 h4{
     color:darkred;
 }
+
+ul {
+    list-style-type: none;
+    margin: 10px;
+    padding:10px;
+}

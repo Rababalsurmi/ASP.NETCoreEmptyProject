@@ -28,5 +28,14 @@ namespace ASP.NETCoreEmptyProject.Controllers
 
             return View(person);
         }
+
+        public IActionResult ListAllPeople()
+        {
+            PeopleViewModel viewModel = new PeopleViewModel();
+
+            viewModel.People = Person.listOfPeople;
+
+            return View(viewModel);
+        }
     }
 }

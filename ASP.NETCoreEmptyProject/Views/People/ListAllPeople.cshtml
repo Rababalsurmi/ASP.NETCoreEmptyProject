@@ -1,0 +1,30 @@
+﻿@model ASP.NETCoreEmptyProject.Models.PeopleViewModel
+
+@{
+    ViewData["Title"] = "ListAllPeople";
+}
+
+<div class="text-center">
+    <h3>List All People</h3>
+</div>
+
+<h4>List of People</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>City</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.People)
+        {
+            <tr>
+                <partial name="_partialPeople" model="item" />
+            </tr>
+        }
+
+    </tbody>
+</table>
