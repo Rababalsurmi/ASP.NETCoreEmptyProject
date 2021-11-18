@@ -6,6 +6,9 @@ namespace ASP.NETCoreEmptyProject.Models
 {
     public class Person
     {
+        private readonly int _personId;
+        public int PersonId { get { return _personId; } }
+
         public string Name { get; set; }
 
         public int Phone { get; set; }
@@ -21,6 +24,18 @@ namespace ASP.NETCoreEmptyProject.Models
                 new Person {Name = "Tom", Phone = 5436789, City = "Stockholm"},
                 new Person {Name = "Kalle", Phone = 056432467, City = "Skövde"}
             });
+        }
+
+        public Person()
+        {
+
+        }
+        public Person (int id, string name, int phone, string city)
+        {
+            this._personId = id;
+            Name = name;
+            Phone = phone;
+            City = city;
         }
     }
 }

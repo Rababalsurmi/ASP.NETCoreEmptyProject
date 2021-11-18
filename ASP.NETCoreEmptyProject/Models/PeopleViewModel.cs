@@ -7,6 +7,13 @@ namespace ASP.NETCoreEmptyProject.Models
     public class PeopleViewModel
     {
         
-        public  List<Person> People = new List<Person>();
+        public List<Person> PeopleListView { get; set;}
+
+        public string FilterString { get; set; }
+
+        public PeopleViewModel()
+        {
+            PeopleListView = new List<Person>(); 
+        }
     }
 }

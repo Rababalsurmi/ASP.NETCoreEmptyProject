@@ -14,10 +14,44 @@ namespace ASP.NETCoreEmptyProject.Controllers
         // GET: /<controller>/
         public IActionResult PeopleIndex()
         {
-            if ( Person.listOfPeople.Count() < 1)
+            PersonMemory personMemory = new PersonMemory();
+
+            PeopleViewModel PeopleViewModel = new PeopleViewModel() { PeopleListView = personMemory.Read() };
+
+            if(PeopleViewModel.PeopleListView.Count == 0 || PeopleViewModel.PeopleListView == null)
             {
-                Person.GeneratePeople();
+                personMemory.SeedPeople();
             }
+
+            //if ( Person.listOfPeople.Count() < 1)
+            //{
+            //    Person.GeneratePeople();
+            //}
+
+            return View(PeopleViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult PeopleIndex(PeopleViewModel viewModel)
+        {
+            PersonMemory personMemory = new PersonMemory();
+            viewModel.PeopleListView.Clear();
+
+            foreach(Person p in personMemory.Read())
+            {
+                if(p.Name.Contains(viewModel.FilterString,
+                    StringComparison.OrdinalIgnoreCase) ||
+                    p.City.Contains(viewModel.FilterString, StringComparison.OrdinalIgnoreCase))
+                {
+                    viewModel.PeopleListView.Add(p);
+                }
+            }
+
+            return View(viewModel);
+        }
+
+        public IActionResult CreatePerson()
+        {
 
             return View();
         }
@@ -33,7 +67,7 @@ namespace ASP.NETCoreEmptyProject.Controllers
         {
             PeopleViewModel viewModel = new PeopleViewModel();
 
-            viewModel.People = Person.listOfPeople;
+            viewModel.PeopleListView = Person.listOfPeople;
 
             return View(viewModel);
         }
