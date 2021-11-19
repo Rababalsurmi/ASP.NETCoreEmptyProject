@@ -23,6 +23,10 @@ namespace ASP.NETCoreEmptyProject.Controllers
             PersonMemory personMemory = new PersonMemory();
             List<Person> peopleList = personMemory.Read();
 
+            if (peopleList.Count == 0 || peopleList == null)
+            {
+                personMemory.SeedPeople();
+            }
             return PartialView("_PeopleListPartial", peopleList);
         }
 
@@ -33,11 +37,33 @@ namespace ASP.NETCoreEmptyProject.Controllers
             Person targetPerson = personMemory.Read(personID);
             List<Person> people = new List<Person>();
 
-            if(targetPerson != null)
+            if (targetPerson != null)
             {
                 people.Add(targetPerson);
             }
+
+
             return PartialView("_PeopleListPartial", people);
+        }
+
+        [HttpPost]
+        public IActionResult DeletePersonById(int personID)
+        {
+            PersonMemory personMemory = new PersonMemory();
+            Person targetPerson = personMemory.Read(personID);
+            List<Person> people = new List<Person>();
+            bool success = false;
+
+            if (targetPerson != null)
+            {
+                success = personMemory.Delet(targetPerson);
+            }
+            if (success)
+            {
+                return StatusCode(200);
+            }
+            return StatusCode(404);
+
         }
     }
 }
