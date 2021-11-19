@@ -5,8 +5,8 @@
 }
 
 function getPersonById() {
-    var personID = document.getElementById('PersonIdInput').value;
-    $.post("/Ajax/FindPersonById", { personID: personID }, function (data) {
+    var personIDValue = document.getElementById('PersonIdInput').value;
+    $.post("/Ajax/FindPersonById", { personID: personIDValue }, function (data) {
         $("#PersonList").html(data);
     });
 }
