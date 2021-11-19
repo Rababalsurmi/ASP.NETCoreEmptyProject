@@ -38,6 +38,9 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="People" asp-action="PeopleIndex">People</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Ajax" asp-action="Index">Ajax</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                         </li>
                     </ul>
@@ -53,12 +56,13 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; @DateTime.Now.ToShortDateString() - Rabab Alsurmi -<a  asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+            &copy; @DateTime.Now.ToShortDateString() - Rabab Alsurmi -<a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/PersonScript.js"></script>
     @RenderSection("Scripts", required: false)
 
 </body>
