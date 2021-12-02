@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ASP.NETCoreEmptyProject.Models;
+using ASP.NETCoreEmptyProject.Data;
+
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,6 +13,19 @@ namespace ASP.NETCoreEmptyProject.Controllers
 {
     public class PeopleController : Controller
     {
+        private readonly PeopleDBContext _context;
+
+        public PeopleController(PeopleDBContext context)
+        {
+            _context = context;
+
+        }
+        public IActionResult People()
+        {
+            List<PersonModel> ListOfPeople = _context.People.ToList();
+            return View(ListOfPeople);
+        }
+
         // GET: /<controller>/
         public IActionResult PeopleIndex()
         {
@@ -91,12 +106,6 @@ namespace ASP.NETCoreEmptyProject.Controllers
             return PartialView("_PeopleListPartial");
         }
 
-        public IActionResult People()
-        {
-            Person person = new Person();
-
-            return View(person);
-        }
 
         public IActionResult ListAllPeople()
         {

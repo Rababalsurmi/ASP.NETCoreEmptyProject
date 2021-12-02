@@ -1,4 +1,4 @@
-﻿@model ASP.NETCoreEmptyProject.Models.Person
+﻿@model IEnumerable<ASP.NETCoreEmptyProject.Models.PersonModel>
 
 @{
     ViewData["Title"] = "People";
@@ -6,24 +6,31 @@
 <div class="text-center">
     <h3>People</h3>
 </div>
+<div class="container">
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Phone</th>
-            <th>City</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in ASP.NETCoreEmptyProject.Models.Person.listOfPeople)
-         {
-            <tr>
-                <td>@item.Name</td>
-                <td>@item.Phone</td>
-                <td>@item.City</td>
-            </tr>
-         }
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>City</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.PersonId</td>
+                        <td>@item.Name</td>
+                        <td>@item.Phone</td>
+                        <td>@item.City</td>
+                    </tr>
+                }
 
-    </tbody>
-</table>
+            </tbody>
+        </table>
+
+    </div>
+</div>
