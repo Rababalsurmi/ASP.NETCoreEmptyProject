@@ -6,6 +6,11 @@ namespace ASP.NETCoreEmptyProject.Models
 {
     public class PersonModel
     {
+        public PersonModel()
+        {
+            this.PeopleLanguages = new List<PeoplLanguagesModel>();
+        }
+
         [Key]
         [MaxLength(10, ErrorMessage = "Needs to be a valid ID!")]
         public int PersonId { get; set; }
@@ -21,5 +26,7 @@ namespace ASP.NETCoreEmptyProject.Models
         public string City { get; set; }
 
         public List<PeopleCityModel>PeopleCity { get; set; }
+
+        public virtual List<PeoplLanguagesModel> PeopleLanguages { get; set; }
     }
 }

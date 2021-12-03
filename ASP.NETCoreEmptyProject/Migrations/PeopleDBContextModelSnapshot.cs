@@ -103,7 +103,7 @@ namespace ASP.NETCoreEmptyProject.Migrations
 
                     b.HasKey("Language");
 
-                    b.ToTable("Language");
+                    b.ToTable("Languages");
 
                     b.HasData(
                         new
@@ -116,6 +116,49 @@ namespace ASP.NETCoreEmptyProject.Migrations
                         },
                         new
                         {
+                            Language = "Norwegian"
+                        });
+                });
+
+            modelBuilder.Entity("ASP.NETCoreEmptyProject.Models.PeoplLanguagesModel", b =>
+                {
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int")
+                        .HasMaxLength(10);
+
+                    b.Property<string>("Language")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.HasKey("PersonId", "Language");
+
+                    b.HasIndex("Language");
+
+                    b.ToTable("PeopleLanguages");
+
+                    b.HasData(
+                        new
+                        {
+                            PersonId = 1,
+                            Language = "English"
+                        },
+                        new
+                        {
+                            PersonId = 1,
+                            Language = "Norwegian"
+                        },
+                        new
+                        {
+                            PersonId = 3,
+                            Language = "English"
+                        },
+                        new
+                        {
+                            PersonId = 3,
+                            Language = "German"
+                        },
+                        new
+                        {
+                            PersonId = 2,
                             Language = "Norwegian"
                         });
                 });
@@ -213,6 +256,21 @@ namespace ASP.NETCoreEmptyProject.Migrations
                     b.HasOne("ASP.NETCoreEmptyProject.Models.CountryModel", "country")
                         .WithMany("CountryCity")
                         .HasForeignKey("CountryName")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ASP.NETCoreEmptyProject.Models.PeoplLanguagesModel", b =>
+                {
+                    b.HasOne("ASP.NETCoreEmptyProject.Models.LanguageModel", "language")
+                        .WithMany("PeopleLanguages")
+                        .HasForeignKey("Language")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ASP.NETCoreEmptyProject.Models.PersonModel", "person")
+                        .WithMany("PeopleLanguages")
+                        .HasForeignKey("PersonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

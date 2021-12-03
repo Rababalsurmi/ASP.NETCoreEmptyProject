@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ASP.NETCoreEmptyProject.Migrations
 {
     [DbContext(typeof(PeopleDBContext))]
-    [Migration("20211202151225_PeopleCityRelationship")]
-    partial class PeopleCityRelationship
+    [Migration("20211203121540_PeopleDB")]
+    partial class PeopleDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -42,27 +42,59 @@ namespace ASP.NETCoreEmptyProject.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ASP.NETCoreEmptyProject.Models.CountryModel", b =>
+            modelBuilder.Entity("ASP.NETCoreEmptyProject.Models.CountryCityModel", b =>
                 {
-                    b.Property<string>("Country")
+                    b.Property<string>("CountryName")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
-                    b.HasKey("Country");
+                    b.Property<string>("CityName")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.HasKey("CountryName", "CityName");
+
+                    b.HasIndex("CityName");
+
+                    b.ToTable("CountryCity");
+
+                    b.HasData(
+                        new
+                        {
+                            CountryName = "Sweden",
+                            CityName = "Stockholm"
+                        },
+                        new
+                        {
+                            CountryName = "Germany",
+                            CityName = "Frankfurt"
+                        },
+                        new
+                        {
+                            CountryName = "Norway",
+                            CityName = "Oslo"
+                        });
+                });
+
+            modelBuilder.Entity("ASP.NETCoreEmptyProject.Models.CountryModel", b =>
+                {
+                    b.Property<string>("CountryName")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.HasKey("CountryName");
 
                     b.ToTable("Country");
 
                     b.HasData(
                         new
                         {
-                            Country = "Sweden"
+                            CountryName = "Sweden"
                         },
                         new
                         {
-                            Country = "Germany"
+                            CountryName = "Germany"
                         },
                         new
                         {
-                            Country = "Norway"
+                            CountryName = "Norway"
                         });
                 });
 
@@ -170,6 +202,21 @@ namespace ASP.NETCoreEmptyProject.Migrations
                             Name = "Jonas",
                             Phone = 712345678
                         });
+                });
+
+            modelBuilder.Entity("ASP.NETCoreEmptyProject.Models.CountryCityModel", b =>
+                {
+                    b.HasOne("ASP.NETCoreEmptyProject.Models.CityModel", "city")
+                        .WithMany("CountryCity")
+                        .HasForeignKey("CityName")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ASP.NETCoreEmptyProject.Models.CountryModel", "country")
+                        .WithMany("CountryCity")
+                        .HasForeignKey("CountryName")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ASP.NETCoreEmptyProject.Models.PeopleCityModel", b =>
