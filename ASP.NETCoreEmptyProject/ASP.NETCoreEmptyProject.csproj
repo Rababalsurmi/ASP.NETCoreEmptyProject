@@ -18,6 +18,7 @@
     <Folder Include="Views\Ajax\" />
     <Folder Include="Views\Country\" />
     <Folder Include="Views\City\" />
+    <Folder Include="Views\Language\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Controllers\" />
@@ -33,6 +34,7 @@
     <None Remove="Microsoft.EntityFrameworkCore" />
     <None Remove="Views\Country\" />
     <None Remove="Views\City\" />
+    <None Remove="Views\Language\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.21">

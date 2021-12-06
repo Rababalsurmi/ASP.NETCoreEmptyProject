@@ -1,10 +1,10 @@
-﻿@model IEnumerable<ASP.NETCoreEmptyProject.Models.PeopleCityModel>
+﻿@model IEnumerable<ASP.NETCoreEmptyProject.Models.PeoplLanguagesModel>
 
 @{
     ViewData["Title"] = "People";
 }
 <div class="text-center">
-    <h3>People and Cities</h3>
+    <h3>Languages and People</h3>
 </div>
 <div class="container">
 
@@ -13,7 +13,7 @@
             <thead>
                 <tr>
                     <th>Person ID</th>
-                    <th>City</th>
+                    <th>Language</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,7 +22,7 @@
 
                     <tr>
                         <td>@item.PersonId</td>
-                        <td>@item.CityName</td>
+                        <td>@item.Language</td>
                     </tr>
                 }
 
