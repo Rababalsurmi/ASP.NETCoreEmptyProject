@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ASP.NETCoreEmptyProject.Models.PeopleCityModel>
+
+@{
+    ViewData["Title"] = "People";
+}
+<div class="text-center">
+    <h3>Countries and Cities</h3>
+</div>
+<div class="container">
+
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Person</th>
+                    <th>City</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>@item.PersonId</td>
+                        <td>@item.CityName</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
