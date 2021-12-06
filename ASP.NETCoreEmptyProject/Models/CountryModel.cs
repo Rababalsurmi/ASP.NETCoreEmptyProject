@@ -16,5 +16,10 @@ namespace ASP.NETCoreEmptyProject.Models
 
         public List<CountryCityModel> CountryCity { get; set; }
 
+        public CountryModel()
+        {
+            CountryCity = new List<CountryCityModel>();
+        }
+
     }
 }
