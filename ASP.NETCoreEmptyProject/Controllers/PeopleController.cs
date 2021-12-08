@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ASP.NETCoreEmptyProject.Models;
 using ASP.NETCoreEmptyProject.Data;
+using Microsoft.EntityFrameworkCore;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -22,7 +23,7 @@ namespace ASP.NETCoreEmptyProject.Controllers
         }
         public IActionResult People()
         {
-            List<PersonModel> ListOfPeople = _context.People.ToList();
+            List<PersonModel> ListOfPeople = _context.People.Include(p => p.City).ToList();
             return View(ListOfPeople);
         }
 
