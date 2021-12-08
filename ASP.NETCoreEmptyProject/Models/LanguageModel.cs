@@ -12,8 +12,11 @@ namespace ASP.NETCoreEmptyProject.Models
             this.PeopleLanguages = new List<PeoplLanguagesModel>();
         }
 
-
         [Key]
+        [MaxLength(10, ErrorMessage = "Needs to be a valid ID!")]
+        public int LanguageId { get; set; }
+
+        
         [Required]
         public string Language { get; set; }
 

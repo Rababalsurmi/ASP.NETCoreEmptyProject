@@ -53,7 +53,7 @@ namespace ASP.NETCoreEmptyProject.Data
             //   .HasForeignKey(cc => cc.CityId);
 
             //People and Languages Relationship
-            modelBuilder.Entity<PeoplLanguagesModel>().HasKey(pl => new { pl.PersonId, pl.Language });
+            modelBuilder.Entity<PeoplLanguagesModel>().HasKey(pl => new { pl.PersonId, pl.LanguageId });
             modelBuilder.Entity<PeoplLanguagesModel>()
               .HasOne(pl => pl.person)
               .WithMany(p => p.PeopleLanguages)
@@ -62,7 +62,7 @@ namespace ASP.NETCoreEmptyProject.Data
             modelBuilder.Entity<PeoplLanguagesModel>()
              .HasOne(pl => pl.language)
              .WithMany(l => l.PeopleLanguages)
-             .HasForeignKey(pl => pl.Language);
+             .HasForeignKey(pl => pl.LanguageId);
 
             //People
             modelBuilder.Entity<PersonModel>().HasKey(p => new { p.PersonId });
@@ -94,9 +94,9 @@ namespace ASP.NETCoreEmptyProject.Data
             modelBuilder.Entity<CityModel>().HasData(new CityModel { CityId = 3, CityName = "Oslo" , CurrentCountryId = 003});
 
             //Seeding Languages
-            modelBuilder.Entity<LanguageModel>().HasData(new LanguageModel { Language = "English" });
-            modelBuilder.Entity<LanguageModel>().HasData(new LanguageModel { Language = "German" });
-            modelBuilder.Entity<LanguageModel>().HasData(new LanguageModel { Language = "Norwegian" });
+            modelBuilder.Entity<LanguageModel>().HasData(new LanguageModel { LanguageId = 1, Language = "English" });
+            modelBuilder.Entity<LanguageModel>().HasData(new LanguageModel { LanguageId = 2, Language = "German" });
+            modelBuilder.Entity<LanguageModel>().HasData(new LanguageModel { LanguageId = 3, Language = "Norwegian" });
 
             //Seeding People and Cities
             //modelBuilder.Entity<PeopleCityModel>().HasData(new PeopleCityModel { PersonId = 1, CityId = 1 });
@@ -109,11 +109,11 @@ namespace ASP.NETCoreEmptyProject.Data
             //modelBuilder.Entity<CountryCityModel>().HasData(new CountryCityModel { CountryId = 003, CityId = 3 });
 
             //Seeding People and Languages
-            modelBuilder.Entity<PeoplLanguagesModel>().HasData(new PeoplLanguagesModel { PersonId = 1, Language = "English" });
-            modelBuilder.Entity<PeoplLanguagesModel>().HasData(new PeoplLanguagesModel { PersonId = 1, Language = "Norwegian" });
-            modelBuilder.Entity<PeoplLanguagesModel>().HasData(new PeoplLanguagesModel { PersonId = 3, Language = "English" });
-            modelBuilder.Entity<PeoplLanguagesModel>().HasData(new PeoplLanguagesModel { PersonId = 3, Language = "German" });
-            modelBuilder.Entity<PeoplLanguagesModel>().HasData(new PeoplLanguagesModel { PersonId = 2, Language = "Norwegian" });
+            modelBuilder.Entity<PeoplLanguagesModel>().HasData(new PeoplLanguagesModel { PersonId = 1, LanguageId = 1 });
+            modelBuilder.Entity<PeoplLanguagesModel>().HasData(new PeoplLanguagesModel { PersonId = 1, LanguageId = 3 });
+            modelBuilder.Entity<PeoplLanguagesModel>().HasData(new PeoplLanguagesModel { PersonId = 3, LanguageId = 1 });
+            modelBuilder.Entity<PeoplLanguagesModel>().HasData(new PeoplLanguagesModel { PersonId = 3, LanguageId = 2 });
+            modelBuilder.Entity<PeoplLanguagesModel>().HasData(new PeoplLanguagesModel { PersonId = 2, LanguageId = 3 });
 
         }
     }

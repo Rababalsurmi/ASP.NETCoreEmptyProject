@@ -24,11 +24,13 @@ namespace ASP.NETCoreEmptyProject.Migrations
                 name: "Languages",
                 columns: table => new
                 {
+                    LanguageId = table.Column<int>(maxLength: 10, nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Language = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Languages", x => x.Language);
+                    table.PrimaryKey("PK_Languages", x => x.LanguageId);
                 });
 
             migrationBuilder.CreateTable(
@@ -124,16 +126,16 @@ namespace ASP.NETCoreEmptyProject.Migrations
                 columns: table => new
                 {
                     PersonId = table.Column<int>(maxLength: 10, nullable: false),
-                    Language = table.Column<string>(nullable: false)
+                    LanguageId = table.Column<int>(maxLength: 10, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PeopleLanguages", x => new { x.PersonId, x.Language });
+                    table.PrimaryKey("PK_PeopleLanguages", x => new { x.PersonId, x.LanguageId });
                     table.ForeignKey(
-                        name: "FK_PeopleLanguages_Languages_Language",
-                        column: x => x.Language,
+                        name: "FK_PeopleLanguages_Languages_LanguageId",
+                        column: x => x.LanguageId,
                         principalTable: "Languages",
-                        principalColumn: "Language",
+                        principalColumn: "LanguageId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_PeopleLanguages_People_PersonId",
@@ -155,12 +157,12 @@ namespace ASP.NETCoreEmptyProject.Migrations
 
             migrationBuilder.InsertData(
                 table: "Languages",
-                column: "Language",
-                values: new object[]
+                columns: new[] { "LanguageId", "Language" },
+                values: new object[,]
                 {
-                    "English",
-                    "German",
-                    "Norwegian"
+                    { 1, "English" },
+                    { 2, "German" },
+                    { 3, "Norwegian" }
                 });
 
             migrationBuilder.InsertData(
@@ -195,14 +197,14 @@ namespace ASP.NETCoreEmptyProject.Migrations
 
             migrationBuilder.InsertData(
                 table: "PeopleLanguages",
-                columns: new[] { "PersonId", "Language" },
+                columns: new[] { "PersonId", "LanguageId" },
                 values: new object[,]
                 {
-                    { 1, "English" },
-                    { 1, "Norwegian" },
-                    { 2, "Norwegian" },
-                    { 3, "English" },
-                    { 3, "German" }
+                    { 1, 1 },
+                    { 1, 3 },
+                    { 2, 3 },
+                    { 3, 1 },
+                    { 3, 2 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -226,9 +228,9 @@ namespace ASP.NETCoreEmptyProject.Migrations
                 column: "CityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PeopleLanguages_Language",
+                name: "IX_PeopleLanguages_LanguageId",
                 table: "PeopleLanguages",
-                column: "Language");
+                column: "LanguageId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

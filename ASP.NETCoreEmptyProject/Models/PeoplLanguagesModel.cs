@@ -13,8 +13,8 @@ namespace ASP.NETCoreEmptyProject.Models
         public PersonModel person { get; set; }
 
         [Key]
-        [Required]
-        public string Language { get; set; }
+        [MaxLength(10, ErrorMessage = "Needs to be a valid ID!")]
+        public int LanguageId { get; set; }
 
         public LanguageModel language { get; set; }
 

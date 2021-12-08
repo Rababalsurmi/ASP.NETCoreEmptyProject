@@ -109,24 +109,33 @@ namespace ASP.NETCoreEmptyProject.Migrations
 
             modelBuilder.Entity("ASP.NETCoreEmptyProject.Models.LanguageModel", b =>
                 {
-                    b.Property<string>("Language")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+                    b.Property<int>("LanguageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasMaxLength(10);
 
-                    b.HasKey("Language");
+                    b.Property<string>("Language")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("LanguageId");
 
                     b.ToTable("Languages");
 
                     b.HasData(
                         new
                         {
+                            LanguageId = 1,
                             Language = "English"
                         },
                         new
                         {
+                            LanguageId = 2,
                             Language = "German"
                         },
                         new
                         {
+                            LanguageId = 3,
                             Language = "Norwegian"
                         });
                 });
@@ -137,12 +146,13 @@ namespace ASP.NETCoreEmptyProject.Migrations
                         .HasColumnType("int")
                         .HasMaxLength(10);
 
-                    b.Property<string>("Language")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+                    b.Property<int>("LanguageId")
+                        .HasColumnType("int")
+                        .HasMaxLength(10);
 
-                    b.HasKey("PersonId", "Language");
+                    b.HasKey("PersonId", "LanguageId");
 
-                    b.HasIndex("Language");
+                    b.HasIndex("LanguageId");
 
                     b.ToTable("PeopleLanguages");
 
@@ -150,27 +160,27 @@ namespace ASP.NETCoreEmptyProject.Migrations
                         new
                         {
                             PersonId = 1,
-                            Language = "English"
+                            LanguageId = 1
                         },
                         new
                         {
                             PersonId = 1,
-                            Language = "Norwegian"
+                            LanguageId = 3
                         },
                         new
                         {
                             PersonId = 3,
-                            Language = "English"
+                            LanguageId = 1
                         },
                         new
                         {
                             PersonId = 3,
-                            Language = "German"
+                            LanguageId = 2
                         },
                         new
                         {
                             PersonId = 2,
-                            Language = "Norwegian"
+                            LanguageId = 3
                         });
                 });
 
@@ -269,7 +279,7 @@ namespace ASP.NETCoreEmptyProject.Migrations
                 {
                     b.HasOne("ASP.NETCoreEmptyProject.Models.LanguageModel", "language")
                         .WithMany("PeopleLanguages")
-                        .HasForeignKey("Language")
+                        .HasForeignKey("LanguageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ASP.NETCoreEmptyProject.Data;
 using ASP.NETCoreEmptyProject.Models;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -22,7 +23,7 @@ namespace ASP.NETCoreEmptyProject.Controllers
         }
         public IActionResult Language()
         {
-            List<PeoplLanguagesModel> ListOfLanguages = _context.PeopleLanguages.ToList();
+            List<LanguageModel> ListOfLanguages = _context.Languages.Include(l => l.PeopleLanguages).ToList();
             return View(ListOfLanguages);
         }
 
