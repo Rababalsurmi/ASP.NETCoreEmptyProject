@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ASP.NETCoreEmptyProject.Models.PeopleCityModel>
+﻿@model IEnumerable<ASP.NETCoreEmptyProject.Models.CityModel>
 
 @{
     ViewData["Title"] = "People";
@@ -12,7 +12,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Person ID</th>
+                    <th>Person</th>
                     <th>City</th>
                 </tr>
             </thead>
@@ -21,7 +21,7 @@
                 {
 
                     <tr>
-                        <td>@item.PersonId</td>
+                        <td>@item.People</td>
                         <td>@item.CityName</td>
                     </tr>
                 }

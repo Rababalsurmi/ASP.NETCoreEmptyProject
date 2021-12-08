@@ -22,10 +22,14 @@ namespace ASP.NETCoreEmptyProject.Models
         [MaxLength(10)]
         public int Phone { get; set; }
 
-        [Required]
-        public string City { get; set; }
+        //[Required]
+        //public string City { get; set; }
 
-        public List<PeopleCityModel>PeopleCity { get; set; }
+        //public List<PeopleCityModel>PeopleCity { get; set; }
+
+        public CityModel City { get; set; }
+
+        public int CurrentCityId { get; set; }
 
         public virtual List<PeoplLanguagesModel> PeopleLanguages { get; set; }
     }

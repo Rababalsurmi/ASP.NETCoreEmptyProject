@@ -25,5 +25,7 @@ namespace ASP.NETCoreEmptyProject.Controllers
             List<PeoplLanguagesModel> ListOfLanguages = _context.PeopleLanguages.ToList();
             return View(ListOfLanguages);
         }
+
+
     }
 }

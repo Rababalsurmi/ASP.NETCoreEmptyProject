@@ -10,13 +10,23 @@ namespace ASP.NETCoreEmptyProject.Models
         //public int CityNum { get; set; }
 
         [Key]
+        [MaxLength(10, ErrorMessage = "Needs to be a valid ID!")]
+        public int CityId { get; set; }
+
+        
         [Required]
         public string CityName { get; set; }
 
-        public List<PeopleCityModel> PeopleCity { get; set; }
+        public List<PersonModel> People { get; set; }
 
-        public List<CountryCityModel> CountryCity { get; set; }
+        //public List<CountryCityModel> CountryCity { get; set; }
 
-       
+        
+        public CountryModel Country { get; set; }
+
+        [Required]
+        public int CurrentCountryId { get; set; }
+
+
     }
 }

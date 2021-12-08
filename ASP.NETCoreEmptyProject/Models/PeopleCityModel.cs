@@ -12,8 +12,9 @@ namespace ASP.NETCoreEmptyProject.Models
         public PersonModel person { get; set; }
 
         [Key]
-        [Required]
-        public string CityName { get; set; }
+        [MaxLength(10, ErrorMessage = "Needs to be a valid ID!")]
+        public int CityId { get; set; }
+
 
         public CityModel city { get; set; }
     }

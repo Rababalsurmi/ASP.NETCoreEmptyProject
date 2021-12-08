@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ASP.NETCoreEmptyProject.Models.CountryCityModel>
+﻿@model IEnumerable<ASP.NETCoreEmptyProject.Models.CountryModel>
 
 @{
     ViewData["Title"] = "People";
@@ -18,13 +18,13 @@
             </thead>
             <tbody>
                 @foreach (var item in Model)
-                {
-
+                 {
                     <tr>
                         <td>@item.CountryName</td>
-                        <td>@item.CityName</td>
+                        <td>@item.Cities</td>
+                    
                     </tr>
-                }
+                 }
 
             </tbody>
         </table>

@@ -22,8 +22,15 @@ namespace ASP.NETCoreEmptyProject.Controllers
         }
         public IActionResult Country()
         {
-            List<CountryCityModel> ListOfCountries = _context.CountryCity.ToList();
+            List<CountryModel> ListOfCountries = _context.Country.ToList();
             return View(ListOfCountries);
+
+            //CountryModel viewModel = new CountryModel();
+
+            //viewModel.Cities = _context.City.ToList();
+
+            //return View(viewModel);
         }
+
     }
 }

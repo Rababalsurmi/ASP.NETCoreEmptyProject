@@ -23,7 +23,7 @@ namespace ASP.NETCoreEmptyProject.Controllers
         }
         public IActionResult City()
         {
-            List<PeopleCityModel> ListOfCities = _context.PeopleCity.ToList();
+            List<CityModel> ListOfCities = _context.City.ToList();
             return View(ListOfCities);
         }
     }
