@@ -12,21 +12,23 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Person</th>
+                    <th>Person ID</th>
                     <th>Language</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
-                {
+                 {
+                    @foreach (var p in item.PeopleLanguages)
+                     {
+                        <tr>
+                            <td>@p.PersonId</td>
+                            <td>@p.language.Language</td>
+                        </tr>
+                     }
 
-                <tr>
+                 }
 
-                    <td>@item.PeopleLanguages</td>
-                    <td>@item.Language</td>
-
-                </tr>
-                }
 
             </tbody>
         </table>

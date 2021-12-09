@@ -21,8 +21,12 @@
                 @foreach (var item in Model)
                  {
                     <tr>
-                        <td>@item.People</td>
-
+                        <td>
+                            @foreach (var c in item.People)
+                             {
+                                @c.Name
+                             }
+                        </td>
                         <td>@item.CityName</td>
                     </tr>
                  }
