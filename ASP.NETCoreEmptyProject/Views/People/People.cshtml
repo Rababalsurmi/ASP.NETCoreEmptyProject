@@ -6,6 +6,8 @@
 <div class="text-center">
     <h3>People</h3>
 </div>
+
+<a class="btn btn-primary" asp-action="CreateNewPerson">Add Person</a>
 <div class="container">
 
     <div class="container">
@@ -15,6 +17,7 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Phone</th>
+                    <th>Language</th>
                     <th>City</th>
                 </tr>
             </thead>
@@ -25,9 +28,16 @@
                         <td>@item.PersonId</td>
                         <td>@item.Name</td>
                         <td>@item.Phone</td>
+                        <td>
+                            @foreach (var l in item.PeopleLanguages)
+                             {
+                                 @l.LanguageId
+                             }
+                        </td>
+
                         <td>@item.City.CityName</td>
                     </tr>
-                }
+                 }
 
             </tbody>
         </table>

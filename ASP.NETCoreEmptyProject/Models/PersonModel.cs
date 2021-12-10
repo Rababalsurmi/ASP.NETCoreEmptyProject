@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ASP.NETCoreEmptyProject.Models
 {
@@ -12,14 +13,15 @@ namespace ASP.NETCoreEmptyProject.Models
         }
 
         [Key]
-        [MaxLength(10, ErrorMessage = "Needs to be a valid ID!")]
-        public int PersonId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //[MaxLength(10, ErrorMessage = "Needs to be a valid ID!")]
+        public long PersonId { get; set; }
 
         [Required]
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(10)]
+        //[MaxLength(10)]
         public int Phone { get; set; }
 
         //[Required]
@@ -27,9 +29,11 @@ namespace ASP.NETCoreEmptyProject.Models
 
         //public List<PeopleCityModel>PeopleCity { get; set; }
 
+        
+        
+        public int CurrentCityId { get; set; }
         public CityModel City { get; set; }
 
-        public int CurrentCityId { get; set; }
 
         public virtual List<PeoplLanguagesModel> PeopleLanguages { get; set; }
     }

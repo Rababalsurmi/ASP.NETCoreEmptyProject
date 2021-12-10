@@ -1,0 +1,35 @@
+﻿@model ASP.NETCoreEmptyProject.Models.LanguageModel
+
+
+@{
+    ViewData["Title"] = "Add Language";
+}
+
+<div class="text-center">
+    <h3>Add Language</h3>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateNewLanguage">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Language" class="control-lable"></label>
+                <input asp-for="Language" class="form-control" />
+                <span asp-validation-for="Language" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" name="btnCreatePerson" value="Add" />
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+<div>
+    <a asp-action="Language">Back To List</a>
+</div>
+
+

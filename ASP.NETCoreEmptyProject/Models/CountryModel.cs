@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ASP.NETCoreEmptyProject.Models
 {
@@ -11,7 +12,8 @@ namespace ASP.NETCoreEmptyProject.Models
         //public int CountryNum { get; set; }
 
         [Key]
-        [MaxLength(10, ErrorMessage = "Needs to be a valid ID!")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //[MaxLength(10, ErrorMessage = "Needs to be a valid ID!")]
         public int CountryId { get; set; }
 
         [Required]

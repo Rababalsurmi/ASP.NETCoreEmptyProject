@@ -26,6 +26,22 @@ namespace ASP.NETCoreEmptyProject.Controllers
             List<LanguageModel> ListOfLanguages = _context.Languages.Include(l => l.PeopleLanguages).ToList();
             return View(ListOfLanguages);
         }
+        public IActionResult CreateNewLanguage()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        public IActionResult CreateNewLanguage(LanguageModel lang)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Languages.Add(lang);
+                _context.SaveChanges();
+                return RedirectToAction("Language");
+            }
+            return View();
+        }
 
 
     }

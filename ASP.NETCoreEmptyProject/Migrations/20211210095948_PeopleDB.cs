@@ -11,7 +11,7 @@ namespace ASP.NETCoreEmptyProject.Migrations
                 name: "Country",
                 columns: table => new
                 {
-                    CountryId = table.Column<int>(maxLength: 10, nullable: false)
+                    CountryId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CountryName = table.Column<string>(nullable: false)
                 },
@@ -24,7 +24,7 @@ namespace ASP.NETCoreEmptyProject.Migrations
                 name: "Languages",
                 columns: table => new
                 {
-                    LanguageId = table.Column<int>(maxLength: 10, nullable: false)
+                    LanguageId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Language = table.Column<string>(nullable: false)
                 },
@@ -37,7 +37,7 @@ namespace ASP.NETCoreEmptyProject.Migrations
                 name: "City",
                 columns: table => new
                 {
-                    CityId = table.Column<int>(maxLength: 10, nullable: false)
+                    CityId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CityName = table.Column<string>(nullable: false),
                     CurrentCountryId = table.Column<int>(nullable: false)
@@ -81,9 +81,9 @@ namespace ASP.NETCoreEmptyProject.Migrations
                 name: "People",
                 columns: table => new
                 {
-                    Id = table.Column<int>(maxLength: 10, nullable: false, defaultValue: 0),
+                    Id = table.Column<long>(nullable: false, defaultValue: 0L),
                     Name = table.Column<string>(nullable: false),
-                    Phone = table.Column<int>(maxLength: 10, nullable: false),
+                    Phone = table.Column<int>(nullable: false),
                     CurrentCityId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -102,7 +102,8 @@ namespace ASP.NETCoreEmptyProject.Migrations
                 columns: table => new
                 {
                     PersonId = table.Column<int>(maxLength: 10, nullable: false),
-                    CityId = table.Column<int>(maxLength: 10, nullable: false)
+                    CityId = table.Column<int>(maxLength: 10, nullable: false),
+                    PersonId1 = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -114,18 +115,18 @@ namespace ASP.NETCoreEmptyProject.Migrations
                         principalColumn: "CityId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PeopleCityModel_People_PersonId",
-                        column: x => x.PersonId,
+                        name: "FK_PeopleCityModel_People_PersonId1",
+                        column: x => x.PersonId1,
                         principalTable: "People",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "PeopleLanguages",
                 columns: table => new
                 {
-                    PersonId = table.Column<int>(maxLength: 10, nullable: false),
+                    PersonId = table.Column<long>(maxLength: 10, nullable: false),
                     LanguageId = table.Column<int>(maxLength: 10, nullable: false)
                 },
                 constraints: table =>
@@ -183,28 +184,28 @@ namespace ASP.NETCoreEmptyProject.Migrations
             migrationBuilder.InsertData(
                 table: "People",
                 columns: new[] { "Id", "CurrentCityId", "Name", "Phone" },
-                values: new object[] { 1, 1, "Tom", 712345678 });
+                values: new object[] { 10L, 1, "Tom", 712345678 });
 
             migrationBuilder.InsertData(
                 table: "People",
                 columns: new[] { "Id", "CurrentCityId", "Name", "Phone" },
-                values: new object[] { 2, 2, "John", 712345678 });
+                values: new object[] { 20L, 2, "John", 712345678 });
 
             migrationBuilder.InsertData(
                 table: "People",
                 columns: new[] { "Id", "CurrentCityId", "Name", "Phone" },
-                values: new object[] { 3, 3, "Jonas", 712345678 });
+                values: new object[] { 30L, 3, "Jonas", 712345678 });
 
             migrationBuilder.InsertData(
                 table: "PeopleLanguages",
                 columns: new[] { "PersonId", "LanguageId" },
                 values: new object[,]
                 {
-                    { 1, 1 },
-                    { 1, 3 },
-                    { 2, 3 },
-                    { 3, 1 },
-                    { 3, 2 }
+                    { 10L, 1 },
+                    { 10L, 3 },
+                    { 20L, 3 },
+                    { 30L, 1 },
+                    { 30L, 2 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -226,6 +227,11 @@ namespace ASP.NETCoreEmptyProject.Migrations
                 name: "IX_PeopleCityModel_CityId",
                 table: "PeopleCityModel",
                 column: "CityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PeopleCityModel_PersonId1",
+                table: "PeopleCityModel",
+                column: "PersonId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PeopleLanguages_LanguageId",

@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using ASP.NETCoreEmptyProject.Models;
 using ASP.NETCoreEmptyProject.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore.Internal;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -23,8 +25,30 @@ namespace ASP.NETCoreEmptyProject.Controllers
         }
         public IActionResult People()
         {
-            List<PersonModel> ListOfPeople = _context.People.Include(p => p.City).ToList();
+            List<PersonModel> ListOfPeople = _context.People
+                                                .Include(p => p.City)
+                                                .Include(l => l.PeopleLanguages)
+                                                .ToList();
             return View(ListOfPeople);
+        }
+
+       
+        public IActionResult CreateNewPerson()
+        {
+            
+
+            return View();
+        }
+        [HttpPost]
+        public IActionResult CreateNewPerson(PersonModel person)
+        {
+            if(ModelState.IsValid)
+            {
+                _context.People.Add(person);
+                _context.SaveChanges();
+                return RedirectToAction("People");
+            }
+            return View();
         }
 
         // GET: /<controller>/

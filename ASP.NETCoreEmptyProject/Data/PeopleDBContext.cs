@@ -74,9 +74,9 @@ namespace ASP.NETCoreEmptyProject.Data
 
             //Seeding People
 
-            modelBuilder.Entity<PersonModel>().HasData(new PersonModel { PersonId = 1, Name = "Tom", Phone = 0712345678, CurrentCityId = 1 });
-            modelBuilder.Entity<PersonModel>().HasData(new PersonModel { PersonId = 2, Name = "John", Phone = 0712345678, CurrentCityId = 2 });
-            modelBuilder.Entity<PersonModel>().HasData(new PersonModel { PersonId = 3, Name = "Jonas", Phone = 0712345678, CurrentCityId = 3 });
+            modelBuilder.Entity<PersonModel>().HasData(new PersonModel { PersonId = 10, Name = "Tom", Phone = 0712345678, CurrentCityId = 1});
+            modelBuilder.Entity<PersonModel>().HasData(new PersonModel { PersonId = 20, Name = "John", Phone = 0712345678, CurrentCityId = 2});
+            modelBuilder.Entity<PersonModel>().HasData(new PersonModel { PersonId = 30, Name = "Jonas", Phone = 0712345678, CurrentCityId = 3});
 
             //modelBuilder.Entity<PersonModel>().HasData(new PersonModel { PersonId = 1, Name = "Tom", City = "Skövde", Phone = 0712345678 });
             //modelBuilder.Entity<PersonModel>().HasData(new PersonModel { PersonId = 2, Name = "John", City = "Kungälv", Phone = 0712345678 });
@@ -109,11 +109,11 @@ namespace ASP.NETCoreEmptyProject.Data
             //modelBuilder.Entity<CountryCityModel>().HasData(new CountryCityModel { CountryId = 003, CityId = 3 });
 
             //Seeding People and Languages
-            modelBuilder.Entity<PeoplLanguagesModel>().HasData(new PeoplLanguagesModel { PersonId = 1, LanguageId = 1 });
-            modelBuilder.Entity<PeoplLanguagesModel>().HasData(new PeoplLanguagesModel { PersonId = 1, LanguageId = 3 });
-            modelBuilder.Entity<PeoplLanguagesModel>().HasData(new PeoplLanguagesModel { PersonId = 3, LanguageId = 1 });
-            modelBuilder.Entity<PeoplLanguagesModel>().HasData(new PeoplLanguagesModel { PersonId = 3, LanguageId = 2 });
-            modelBuilder.Entity<PeoplLanguagesModel>().HasData(new PeoplLanguagesModel { PersonId = 2, LanguageId = 3 });
+            modelBuilder.Entity<PeoplLanguagesModel>().HasData(new PeoplLanguagesModel { PersonId = 10, LanguageId = 1 });
+            modelBuilder.Entity<PeoplLanguagesModel>().HasData(new PeoplLanguagesModel { PersonId = 10, LanguageId = 3 });
+            modelBuilder.Entity<PeoplLanguagesModel>().HasData(new PeoplLanguagesModel { PersonId = 30, LanguageId = 1 });
+            modelBuilder.Entity<PeoplLanguagesModel>().HasData(new PeoplLanguagesModel { PersonId = 30, LanguageId = 2 });
+            modelBuilder.Entity<PeoplLanguagesModel>().HasData(new PeoplLanguagesModel { PersonId = 20, LanguageId = 3 });
 
         }
     }

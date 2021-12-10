@@ -14,21 +14,23 @@
             <thead>
                 <tr>
                     <th>Person</th>
+                    <th>City ID</th>
                     <th>City</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                  {
-                    <tr>
-                        <td>
-                            @foreach (var c in item.People)
-                             {
-                                @c.Name
-                             }
-                        </td>
-                        <td>@item.CityName</td>
-                    </tr>
+                <tr>
+                    <td>
+                        @foreach (var c in item.People)
+                        {
+                            @c.Name
+                        }
+                    </td>
+                    <td>@item.CityId</td>
+                    <td>@item.CityName</td>
+                </tr>
                  }
 
             </tbody>
