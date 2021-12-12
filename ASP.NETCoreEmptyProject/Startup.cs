@@ -1,7 +1,9 @@
 ﻿using ASP.NETCoreEmptyProject.Data;
+using ASP.NETCoreEmptyProject.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,11 +38,21 @@ namespace ASP.NET_Core_Empty_Project
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
-            services.AddControllersWithViews();
 
             services.AddDbContext<PeopleDBContext>(options =>
             options.UseMySql(Configuration.GetConnectionString("DefaultConnection"))
             );
+
+            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+              .AddDefaultUI()
+              .AddDefaultTokenProviders()
+              .AddEntityFrameworkStores<PeopleDBContext>();
+
+
+            services.AddControllersWithViews();
+
+            services.AddRazorPages();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,7 +75,12 @@ namespace ASP.NET_Core_Empty_Project
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
+
+            //app.UseIdentity();
+
 
             app.UseSession();
 
@@ -85,6 +102,7 @@ namespace ASP.NET_Core_Empty_Project
                     name: "people",
                     pattern: "People",
                     defaults: new { Controller = "People", action = "PeopleIndex" });
+                endpoints.MapRazorPages();
             });
         }
     }

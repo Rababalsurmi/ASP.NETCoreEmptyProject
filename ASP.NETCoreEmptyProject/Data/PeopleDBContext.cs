@@ -3,10 +3,12 @@ using System.Linq;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using ASP.NETCoreEmptyProject.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace ASP.NETCoreEmptyProject.Data
 {
-    public class PeopleDBContext : DbContext
+    public class PeopleDBContext : IdentityDbContext<ApplicationUser>
     {
         public PeopleDBContext(DbContextOptions<PeopleDBContext> options) : base(options) { }
 
@@ -24,10 +26,15 @@ namespace ASP.NETCoreEmptyProject.Data
 
         public DbSet<PeoplLanguagesModel> PeopleLanguages { get; set; }
 
+        public DbSet<ApplicationUser> Users { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //Identity
+            base.OnModelCreating(modelBuilder);
+
             //People and City Relationship
             modelBuilder.Entity<PeopleCityModel>().HasKey(pc => new { pc.PersonId, pc.CityId });
             modelBuilder.Entity<PersonModel>()
