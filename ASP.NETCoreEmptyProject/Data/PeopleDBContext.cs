@@ -122,6 +122,44 @@ namespace ASP.NETCoreEmptyProject.Data
             modelBuilder.Entity<PeoplLanguagesModel>().HasData(new PeoplLanguagesModel { PersonId = 30, LanguageId = 2 });
             modelBuilder.Entity<PeoplLanguagesModel>().HasData(new PeoplLanguagesModel { PersonId = 20, LanguageId = 3 });
 
+            string roleId = Guid.NewGuid().ToString();
+            string userId = Guid.NewGuid().ToString();
+            string userRoleId = Guid.NewGuid().ToString();
+
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
+            {
+                Id = roleId,
+                Name = "Admin",
+                NormalizedName = "ADMIN"
+            });
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
+            {
+                Id = userRoleId,
+                Name = "User",
+                NormalizedName = "USER"
+            });
+
+            PasswordHasher<ApplicationUser> hasher = new PasswordHasher<ApplicationUser>();
+
+            modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser
+            {
+                Id = userId,
+                Email = "admin@admin.com",
+                NormalizedEmail = "ADMIN@ADMIN.COM",
+                UserName = "Admin",
+                NormalizedUserName = "ADMIN",
+                PasswordHash = hasher.HashPassword(null, "password"),
+                FirstName = "Admin",
+                LastName = "Adminsson"
+            });
+
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            {
+                RoleId = roleId,
+                UserId = userId
+            });
+
+
         }
     }
 }

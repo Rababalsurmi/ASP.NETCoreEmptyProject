@@ -3,14 +3,16 @@ using System;
 using ASP.NETCoreEmptyProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ASP.NETCoreEmptyProject.Migrations
 {
     [DbContext(typeof(PeopleDBContext))]
-    partial class PeopleDBContextModelSnapshot : ModelSnapshot
+    [Migration("20211213105143_IdentityUserUpdatedAdmin")]
+    partial class IdentityUserUpdatedAdmin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

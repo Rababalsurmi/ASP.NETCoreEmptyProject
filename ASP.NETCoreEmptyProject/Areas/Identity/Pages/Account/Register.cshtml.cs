@@ -7,7 +7,7 @@ using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using ASP.NET_Core_Project.Models;
+using ASP.NETCoreEmptyProject.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 
-namespace ASP.NET_Core_Project.Areas.Identity.Pages.Account
+namespace ASP.NETCoreEmptyProject.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class RegisterModel : PageModel
@@ -60,6 +60,11 @@ namespace ASP.NET_Core_Project.Areas.Identity.Pages.Account
             public string LastName { get; set; }
 
             [Required]
+            [Display(Name = "Birth Date")]
+            [DataType(DataType.Date)]
+            public DateTime BirthDate { get; set; }
+
+            [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
@@ -84,7 +89,7 @@ namespace ASP.NET_Core_Project.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, 
-                    FirstName = Input.FirstName, LastName=Input.LastName };
+                    FirstName = Input.FirstName, LastName=Input.LastName, BirthDate= Input.BirthDate};
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

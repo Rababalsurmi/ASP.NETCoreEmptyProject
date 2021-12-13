@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using ASP.NET_Core_Project.Models;
+using ASP.NETCoreEmptyProject.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace ASP.NET_Core_Project.Areas.Identity.Pages.Account.Manage
+namespace ASP.NETCoreEmptyProject.Areas.Identity.Pages.Account.Manage
 {
     public class DownloadPersonalDataModel : PageModel
     {
