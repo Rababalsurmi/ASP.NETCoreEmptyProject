@@ -35,7 +35,11 @@ namespace ASP.NETCoreEmptyProject.Controllers
        
         public IActionResult CreateNewPerson()
         {
-            
+            ViewBag.CityId = _context.City.Select(a => new SelectListItem
+            {
+                Text = a.CityName,
+                Value = a.CityName
+            }).ToList();
 
             return View();
         }
@@ -51,6 +55,55 @@ namespace ASP.NETCoreEmptyProject.Controllers
             return View();
         }
 
+        public IActionResult EditExistingPerson(int personId)
+        {
+            var PersonData = _context.People.Where(x => x.PersonId == personId).FirstOrDefault();
+            if (PersonData != null)
+            {
+                ViewBag.CityId = _context.City.Select(a => new SelectListItem
+                {
+                    Text = a.CityName,
+                    Value = a.CityName
+                }).ToList();
+                TempData["PersonId"] = personId;
+                TempData.Keep();
+                return View(PersonData);
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult EditExistingPerson(PersonModel person)
+        {
+            int personID = (int)TempData["PersonId"];
+            var PersonData = _context.People.Where(x => x.PersonId == personID).FirstOrDefault();
+
+            if (PersonData != null)
+            {
+                PersonData.Name = person.Name;
+                PersonData.Phone = person.Phone;
+                PersonData.City.CityName = person.City.CityName;
+
+                _context.Entry(PersonData).State = EntityState.Modified;
+                _context.SaveChanges();
+            }
+            return RedirectToAction("People");
+        }
+
+        public IActionResult DeleteExistingPerson(int personId)
+        {
+            if (personId > 0)
+            {
+                var personbyId = _context.People.Where(x => x.PersonId == personId).FirstOrDefault();
+                if (personbyId != null)
+                {
+                    _context.Entry(personbyId).State = EntityState.Deleted;
+                    _context.SaveChanges();
+                }
+            }
+            return RedirectToAction("People");
+        }
+
         // GET: /<controller>/
         public IActionResult PeopleIndex()
         {
@@ -58,7 +111,7 @@ namespace ASP.NETCoreEmptyProject.Controllers
 
             PeopleViewModel PeopleViewModel = new PeopleViewModel() { PeopleListView = personMemory.Read() };
 
-            if(PeopleViewModel.PeopleListView.Count == 0 || PeopleViewModel.PeopleListView == null)
+            if (PeopleViewModel.PeopleListView.Count == 0 || PeopleViewModel.PeopleListView == null)
             {
                 personMemory.SeedPeople();
             }
@@ -77,9 +130,9 @@ namespace ASP.NETCoreEmptyProject.Controllers
             PersonMemory personMemory = new PersonMemory();
             viewModel.PeopleListView.Clear();
 
-            foreach(Person p in personMemory.Read())
+            foreach (Person p in personMemory.Read())
             {
-                if(p.Name.Contains(viewModel.FilterString,
+                if (p.Name.Contains(viewModel.FilterString,
                     StringComparison.OrdinalIgnoreCase) ||
                     p.City.Contains(viewModel.FilterString, StringComparison.OrdinalIgnoreCase))
                 {
@@ -97,7 +150,7 @@ namespace ASP.NETCoreEmptyProject.Controllers
 
             PersonMemory personMemory = new PersonMemory();
 
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 newViewModel.Name = cPersonViewModel.Name;
                 newViewModel.Phone = cPersonViewModel.Phone;
@@ -140,5 +193,10 @@ namespace ASP.NETCoreEmptyProject.Controllers
 
             return View(viewModel);
         }
+
+
+
     }
+
 }
+

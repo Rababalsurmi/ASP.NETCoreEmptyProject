@@ -19,24 +19,26 @@
                     <th>Phone</th>
                     <th>Language</th>
                     <th>City</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>@item.PersonId</td>
-                        <td>@item.Name</td>
-                        <td>@item.Phone</td>
-                        <td>
-                            @foreach (var l in item.PeopleLanguages)
-                             {
-                                 @l.LanguageId
-                             }
-                        </td>
+                <tr>
+                    <td>@item.PersonId</td>
+                    <td>@item.Name</td>
+                    <td>@item.Phone</td>
+                    <td>
+                        @foreach (var l in item.PeopleLanguages)
+                        {
+                            @l.LanguageId
+                        }
+                    </td>
 
-                        <td>@item.City.CityName</td>
-                    </tr>
+                    <td>@item.City.CityName</td>
+                    <td> @Html.ActionLink("Edit", "EditExistingPerson", new { personId = @item.PersonId }) | @Html.ActionLink("Delete", "DeleteExistingPerson", new { personId = @item.PersonId }) </td>
+                </tr>
                  }
 
             </tbody>
@@ -47,12 +49,16 @@
 
 <div>
     <ul>
-        <li>
-            <a class="btn btn-primary" asp-controller="Country" asp-action="Country">Countries</a>
-        </li>
-        <li>
-            <a class="btn btn-primary" asp-controller="City" asp-action="City">Cities</a>
-        </li>
+        @if (User.IsInRole("Admin"))
+         {
+            <li>
+                <a class="btn btn-primary" asp-controller="Country" asp-action="Country">Countries</a>
+            </li>
+            <li>
+                <a class="btn btn-primary" asp-controller="City" asp-action="City">Cities</a>
+            </li>
+         }
+
         <li>
             <a class="btn btn-primary" asp-controller="Language" asp-action="Language">Languages</a>
         </li>

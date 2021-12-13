@@ -1,49 +1,41 @@
 ﻿@model ASP.NETCoreEmptyProject.Models.PersonModel
 
-
 @{
-    ViewData["Title"] = "Create Person";
+    ViewData["Title"] = "EditPerson";
 }
 
-<div class="text-center">
-    <h3>Create Person</h3>
-</div>
+<h2>EditPerson</h2>
 
+<h4>PeopleModel</h4>
+<hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="CreateNewPerson">
+        <form asp-action="EditPerson">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PersonId" />
             <div class="form-group">
-                <label asp-for="Name" class="control-lable"></label>
+                <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Phone" class="control-lable"></label>
+                <label asp-for="Phone" class="control-label"></label>
                 <input asp-for="Phone" class="form-control" />
                 <span asp-validation-for="Phone" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
                 <label asp-for="City.CityName" class="control-label"></label>
                 <select asp-for="City.CityName" class="form-control" asp-items="ViewBag.CityId"></select>
                 <span asp-validation-for="City.CityName" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                    <label asp-for="PeopleLanguages" class="control-lable"></label>
-                    <input asp-for=" PeopleLanguages" class="form-control" />
-                    <span asp-validation-for=" PeopleLanguages" class="text-danger"></span>
-                </div>*@
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" name="btnCreatePerson" value="Create" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
-
     </div>
-
 </div>
 
 <div>
-    <a asp-action="People">Back To List</a>
+    <a asp-action="People">Back to List</a>
 </div>
-
-

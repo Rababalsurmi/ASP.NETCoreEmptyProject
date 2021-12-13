@@ -6,6 +6,9 @@
 <div class="text-center">
     <h3>Countries and Cities</h3>
 </div>
+
+<a asp-action="CreateCountry">Create</a>
+
 <div class="container">
 
     <div class="container">
@@ -14,25 +17,25 @@
                 <tr>
                     <th>Country</th>
                     <th>City</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
-                 {
+                {
 
-                   <tr>
-                    <td>@item.CountryName</td>
+                    <tr>
+                        <td>@item.CountryName</td>
 
-                       <td>@foreach (var c in item.Cities)
+                        <td>
+                            @foreach (var c in item.Cities)
                             {
-                               @c.CityName
+                                @c.CityName
                             }
-                       </td>
-
-                    
-                   </tr>
+                        </td>
+                        <td> @Html.ActionLink("Edit", "EditCountry", new { countryName = @item.CountryName }) | @Html.ActionLink("Delete", "DeleteCountry", new { countryName = @item.CountryName }) </td>
+                    </tr>
                  }
-
             </tbody>
         </table>
 

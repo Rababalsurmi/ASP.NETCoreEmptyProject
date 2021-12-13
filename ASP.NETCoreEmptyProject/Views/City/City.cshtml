@@ -7,6 +7,9 @@
 <div class="text-center">
     <h3>People and Cities</h3>
 </div>
+
+<a asp-action="CreateCity">Create</a>
+
 <div class="container">
 
     <div class="container">
@@ -16,6 +19,7 @@
                     <th>Person</th>
                     <th>City ID</th>
                     <th>City</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,6 +34,7 @@
                     </td>
                     <td>@item.CityId</td>
                     <td>@item.CityName</td>
+                    <td> @Html.ActionLink("Edit", "EditCity", new { cityid = @item.CityId }) | @Html.ActionLink("Delete", "DeleteCity", new { cityid = @item.CityId }) </td>
                 </tr>
                  }
 
