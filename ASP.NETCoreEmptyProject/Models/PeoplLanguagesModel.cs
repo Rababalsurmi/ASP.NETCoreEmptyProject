@@ -8,7 +8,7 @@ namespace ASP.NETCoreEmptyProject.Models
     {
         [Key]
         [MaxLength(10, ErrorMessage = "Needs to be a valid ID!")]
-        public long PersonId { get; set; }
+        public int PersonId { get; set; }
 
         public PersonModel person { get; set; }
 

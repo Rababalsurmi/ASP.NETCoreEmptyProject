@@ -15,7 +15,7 @@ namespace ASP.NETCoreEmptyProject.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         //[MaxLength(10, ErrorMessage = "Needs to be a valid ID!")]
-        public long PersonId { get; set; }
+        public int PersonId { get; set; }
 
         [Required]
         public string Name { get; set; }

@@ -36,7 +36,7 @@ namespace ASP.NETCoreEmptyProject.Data
             base.OnModelCreating(modelBuilder);
 
             //People and City Relationship
-            modelBuilder.Entity<PeopleCityModel>().HasKey(pc => new { pc.PersonId, pc.CityId });
+            //modelBuilder.Entity<PeopleCityModel>().HasKey(pc => new { pc.PersonId, pc.CityId });
             modelBuilder.Entity<PersonModel>()
                 .HasOne<CityModel>(p => p.City)
                 .WithMany(c => c.People)
@@ -48,7 +48,7 @@ namespace ASP.NETCoreEmptyProject.Data
             //   .HasForeignKey(pc => pc.CityId);
 
             //Country and City Relationship
-            modelBuilder.Entity<CountryCityModel>().HasKey(cc => new { cc.CountryId, cc.CityId });
+           // modelBuilder.Entity<CountryCityModel>().HasKey(cc => new { cc.CountryId, cc.CityId });
             modelBuilder.Entity<CityModel>()
                 .HasOne<CountryModel>(city => city.Country)
                 .WithMany(c => c.Cities)
@@ -76,7 +76,7 @@ namespace ASP.NETCoreEmptyProject.Data
             modelBuilder.Entity<PersonModel>()
                 .Property(p => p.PersonId)
                 .HasColumnName("Id")
-                .HasDefaultValue(0)
+                //.HasDefaultValue(0)
                 .IsRequired();
 
             //Seeding People
