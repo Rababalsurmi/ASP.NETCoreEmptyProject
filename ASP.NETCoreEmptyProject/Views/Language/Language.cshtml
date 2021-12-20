@@ -23,6 +23,7 @@
                  {   <tr>
                         <td>@item.LanguageId</td>
                         <td>@item.Language</td>
+                        <td> @Html.ActionLink("Delete", "DeleteLanguage", new { langid = @item.LanguageId }) </td>
                      </tr>
                  }
             </tbody>

@@ -37,11 +37,15 @@ namespace ASP.NETCoreEmptyProject.Controllers
         [HttpPost]
         public IActionResult CreateCountry(CountryModel country)
         {
+            CountryViewModel newViewModel = new CountryViewModel();
+            List<CountryModel> ListOfCountries = _context.Country.Include(c => c.Cities).ToList();
+
             if (ModelState.IsValid)
             {
                 _context.Country.Add(country);
                 _context.SaveChanges();
-                return RedirectToAction("Country");
+                newViewModel.CountryListView = ListOfCountries;
+                return RedirectToAction("Country", newViewModel);
             }
             return View();
         }

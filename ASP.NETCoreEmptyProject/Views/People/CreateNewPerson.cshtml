@@ -28,11 +28,21 @@
                 <select asp-for="City.CityName" class="form-control" asp-items="ViewBag.CityId"></select>
                 <span asp-validation-for="City.CityName" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="City.Country.CountryName" class="control-label"></label>
+                <select asp-for="City.Country.CountryName" class="form-control" asp-items="ViewBag.CountryId"></select>
+                <span asp-validation-for="City.Country.CountryName" class="text-danger"></span>
+            </div>
             @*<div class="form-group">
-                    <label asp-for="PeopleLanguages" class="control-lable"></label>
-                    <input asp-for=" PeopleLanguages" class="form-control" />
-                    <span asp-validation-for=" PeopleLanguages" class="text-danger"></span>
-                </div>*@
+            <label asp-for="PeopleLanguages" class="control-label"></label>
+            <select asp-for="PeopleLanguages" class="form-control" asp-items="ViewBag.LanguageId "></select>
+            <span asp-validation-for="PeopleLanguages" class="text-danger"></span>
+        </div>*@
+            @*<div class="form-group">
+            <label asp-for="PeopleLanguages" class="control-lable"></label>
+            <input asp-for=" PeopleLanguages" class="form-control" />
+            <span asp-validation-for=" PeopleLanguages" class="text-danger"></span>
+        </div>*@
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" name="btnCreatePerson" value="Create" />
             </div>

@@ -8,6 +8,7 @@ using ASP.NETCoreEmptyProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.AspNetCore.Authorization;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -23,6 +24,8 @@ namespace ASP.NETCoreEmptyProject.Controllers
             _context = context;
 
         }
+        [Authorize(Roles = "User")]
+        [Authorize(Roles = "Admin")]
         public IActionResult People()
         {
             List<PersonModel> ListOfPeople = _context.People
@@ -32,31 +35,60 @@ namespace ASP.NETCoreEmptyProject.Controllers
             return View(ListOfPeople);
         }
 
-       
+        [Authorize(Roles = "User")]
+        [Authorize(Roles = "Admin")]
         public IActionResult CreateNewPerson()
         {
+            List<LanguageModel> ListOfLanguages = _context.Languages.Include(l => l.PeopleLanguages).ToList();
+            List<CityModel> ListOfCities = _context.City.Include(c => c.People).ToList();
+
             ViewBag.CityId = _context.City.Select(a => new SelectListItem
             {
                 Text = a.CityName,
                 Value = a.CityName
             }).ToList();
 
+            ViewBag.CountryId = _context.Country.Select(a => new SelectListItem
+            {
+                Text = a.CountryName,
+                Value = a.CountryName
+            }).ToList();
+
+            //ViewBag.LanguageId = _context.Languages.Select(a => new SelectListItem
+            //{
+            //    Text = a.Language,
+            //    Value = a.Language
+            //}).ToList();
+
             return View();
         }
+        [Authorize(Roles = "User")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult CreateNewPerson(PersonModel person)
         {
-            if(ModelState.IsValid)
+            List<LanguageModel> ListOfLanguages = _context.Languages.Include(l => l.PeopleLanguages).ToList();
+            List<CityModel> ListOfCities = _context.City.Include(c => c.People).ToList();
+
+            
+
+            if (ModelState.IsValid)
             {
-                _context.People.Add(person);
-                _context.SaveChanges();
+                _context.Entry(person).State = EntityState.Added;
+
+                this._context.People.Add(person);
+
+                this._context.SaveChanges();
                 return RedirectToAction("People");
             }
             return View();
         }
 
+        [Authorize(Roles = "User")]
+        [Authorize(Roles = "Admin")]
         public IActionResult EditExistingPerson(int personId)
         {
+            List<CityModel> ListOfCities = _context.City.Include(c => c.People).ToList();
             var PersonData = _context.People.Where(x => x.PersonId == personId).FirstOrDefault();
             if (PersonData != null)
             {
@@ -71,10 +103,12 @@ namespace ASP.NETCoreEmptyProject.Controllers
             }
             return View();
         }
-
+        [Authorize(Roles = "User")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult EditExistingPerson(PersonModel person)
         {
+            List<CityModel> ListOfCities = _context.City.Include(c => c.People).ToList();
             int personID = (int)TempData["PersonId"];
             var PersonData = _context.People.Where(x => x.PersonId == personID).FirstOrDefault();
 
@@ -90,6 +124,7 @@ namespace ASP.NETCoreEmptyProject.Controllers
             return RedirectToAction("People");
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteExistingPerson(int personId)
         {
             if (personId > 0)

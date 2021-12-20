@@ -38,21 +38,27 @@ namespace ASP.NETCoreEmptyProject.Controllers
                 Text = a.CountryName,
                 Value = a.CountryName
             }).ToList();
+           
             return View();
         }
         [HttpPost]
         public IActionResult CreateCity(CityModel city)
         {
+            CityViewModel newViewModel = new CityViewModel();
+            List<CityModel> ListOfCities = _context.City.Include(c => c.People).ToList();
+
             if (ModelState.IsValid)
             {
                 _context.City.Add(city);
                 _context.SaveChanges();
-                return RedirectToAction("City");
+                newViewModel.CityListView = ListOfCities;
+                return RedirectToAction("City", newViewModel);
             }
             return View();
         }
         public IActionResult EditCity(int cityid)
         {
+            List<CountryModel> ListOfCountries = _context.Country.Include(c => c.Cities).ToList();
             var CityData = _context.City.Where(x => x.CityId == cityid).FirstOrDefault();
             if (CityData != null)
             {
@@ -71,6 +77,7 @@ namespace ASP.NETCoreEmptyProject.Controllers
         [HttpPost]
         public IActionResult EditCity(CityModel city)
         {
+            List<CountryModel> ListOfCountries = _context.Country.Include(c => c.Cities).ToList();
             int cityID = (int)TempData["CityID"];
             var CityData = _context.City.Where(x => x.CityId == cityID).FirstOrDefault();
 
