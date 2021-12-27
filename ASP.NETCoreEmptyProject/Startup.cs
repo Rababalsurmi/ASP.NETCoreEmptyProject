@@ -12,6 +12,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JavaScriptEngineSwitcher.V8;
+using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
+using React.AspNet;
 
 namespace ASP.NET_Core_Empty_Project
 {
@@ -49,6 +52,12 @@ namespace ASP.NET_Core_Empty_Project
               .AddEntityFrameworkStores<PeopleDBContext>();
 
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddReact();
+
+            services.AddJsEngineSwitcher(options => options.DefaultEngineName = V8JsEngine.EngineName)
+                .AddV8();
             services.AddControllersWithViews();
 
             services.AddRazorPages();
@@ -70,6 +79,12 @@ namespace ASP.NET_Core_Empty_Project
             }
 
             app.UseHttpsRedirection();
+
+            app.UseReact(config =>
+            {
+                //config.AddScript("file");
+            }
+            );
 
             app.UseStaticFiles();
 

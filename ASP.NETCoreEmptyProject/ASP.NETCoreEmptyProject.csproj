@@ -19,6 +19,7 @@
     <Folder Include="Views\Country\" />
     <Folder Include="Views\City\" />
     <Folder Include="Views\Language\" />
+    <Folder Include="Views\React\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Controllers\" />
@@ -39,6 +40,11 @@
     <None Remove="Microsoft.Extensions.Identity.Core" />
     <None Remove="Microsoft.AspNetCore.Identity.UI" />
     <None Remove="Microsoft.VisualStudio.Web.CodeGeneration.Design" />
+    <None Remove="React.AspNet" />
+    <None Remove="JavaScriptEngineSwitcher.V8" />
+    <None Remove="Microsoft.ClearScript.V8.Native.win-x64" />
+    <None Remove="JavaScriptEngineSwitcher.Extensions.MsDependencyInjection" />
+    <None Remove="Views\React\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.21">
@@ -51,5 +57,9 @@
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="3.1.21" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.21" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
+    <PackageReference Include="React.AspNet" Version="5.2.12" />
+    <PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.14.0" />
+    <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.2.0" />
+    <PackageReference Include="JavaScriptEngineSwitcher.Extensions.MsDependencyInjection" Version="3.3.0" />
   </ItemGroup>
 </Project>
