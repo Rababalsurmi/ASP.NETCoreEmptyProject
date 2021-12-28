@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using JavaScriptEngineSwitcher.V8;
+using JavaScriptEngineSwitcher.ChakraCore;
 using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
 using React.AspNet;
 
@@ -57,8 +58,12 @@ namespace ASP.NET_Core_Empty_Project
 
             services.AddReact();
 
-            services.AddJsEngineSwitcher(options => options.DefaultEngineName = V8JsEngine.EngineName)
-                .AddV8();
+            //services.AddJsEngineSwitcher(options => options.DefaultEngineName = V8JsEngine.EngineName)
+            //    .AddV8();
+
+            services.AddJsEngineSwitcher(options => options.DefaultEngineName = ChakraCoreJsEngine.EngineName)
+                 .AddChakraCore();
+
             services.AddControllersWithViews();
 
             services.AddRazorPages();
