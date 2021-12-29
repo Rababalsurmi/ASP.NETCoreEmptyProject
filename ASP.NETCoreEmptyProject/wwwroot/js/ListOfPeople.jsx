@@ -16,7 +16,7 @@
 class PersonRow extends React.Component {
     render() {
         const person = this.props.person;
-        const name = person.name ?
+        const name = person.Id ?
             person.name :
             <span style={{ color: 'red' }}>
                 {person.name}
@@ -24,6 +24,7 @@ class PersonRow extends React.Component {
 
         return (
             <tr>
+                <td>{person.Id}</td>
                 <td>{name}</td>
                 <td>{person.language}</td>
                 <td>{person.city}</td>
@@ -35,10 +36,12 @@ class PersonRow extends React.Component {
 
 class PersonTable extends React.Component {
     render() {
+
         const rows = [];
         let lastCity = null;
 
         this.props.people.forEach((person) => {
+           
             //if (person.city !== lastCity) {
             //    rows.push(
             //        <CityRow
@@ -49,7 +52,7 @@ class PersonTable extends React.Component {
             rows.push(
                 <PersonRow
                     person={person}
-                    key={person.name} />
+                    key={person.Id} />
             );
             lastCity = person.city;
         });
@@ -58,6 +61,7 @@ class PersonTable extends React.Component {
             <table>
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Name</th>
                         <th>Language</th>
                         <th>City</th>
@@ -70,27 +74,13 @@ class PersonTable extends React.Component {
     }
 }
 
-class SearchBar extends React.Component {
-    render() {
-        return (
-            <form>
-                <input type="text" placeholder="Search..." />
-                <p>
-                    <input type="checkbox" />
-                    {' '}
-          Only show person name
-        </p>
-            </form>
-        );
-    }
-}
+
 
 class FilterablePersonTable extends React.Component {
-    render() {
+  render() {
         return (
             <div>
-                <SearchBar />
-                <PersonTable people={this.props.people} />
+                <PersonTable  people={this.props.people}/>
             </div>
         );
     }
@@ -98,12 +88,12 @@ class FilterablePersonTable extends React.Component {
 
 
 const PEOPLE = [
-    { city: 'Paris', country: 'France', language: 'French and Englis',  name: 'John' },
-    { city: 'Göteborg', country: 'Sweden', language: 'Swedish and English',  name: 'Tom' },
-    { city: 'Skövde', country: 'Sweden',language: 'Arabic, Swedish and English',  name: 'Simon' },
-    { city: 'Jönköping', country: 'Sweden', language: 'Swedish, Norwegian and English',  name: 'Alex' },
-    { city: 'Kungälv', country: 'Sweden',language: 'Swedish and English',  name: 'Hugo' },
-    { city: 'Stockholm', country: 'Sweden',language: 'Swedish, German and English',  name: 'Michael' }
+    { city: 'Paris', country: 'France', language: 'French and Englis',  name: 'John', Id: '1' },
+    { city: 'Göteborg', country: 'Sweden', language: 'Swedish and English', name: 'Tom', Id: '2'  },
+    { city: 'Skövde', country: 'Sweden', language: 'Spanish, Swedish and English', name: 'Simon', Id: '3' },
+    { city: 'Jönköping', country: 'Sweden', language: 'Swedish, Norwegian and English', name: 'Alex', Id: '4' },
+    { city: 'Kungälv', country: 'Sweden', language: 'Swedish and English', name: 'Hugo', Id: '5' },
+    { city: 'Stockholm', country: 'Sweden', language: 'Swedish, German and English', name: 'Michael', Id: '6' }
 ];
 
 ReactDOM.render(
