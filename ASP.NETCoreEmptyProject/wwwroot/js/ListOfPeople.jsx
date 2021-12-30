@@ -58,7 +58,7 @@ class PersonTable extends React.Component {
         });
 
         return (
-            <table class="table">
+            <table className="table">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -79,7 +79,7 @@ class PersonTable extends React.Component {
 class ViewPersonTable extends React.Component {
   render() {
         return (
-            <div>
+            <div className="viewTable">
                 <PersonTable people={this.props.people} />
               
             </div>
@@ -87,7 +87,11 @@ class ViewPersonTable extends React.Component {
     }
 }
 
-
+function GetAllPeople() {
+    $.get("/React/GetPeople", null, function (data) {
+        $("#list").html(data);
+    });
+}
 const PEOPLE = [
     { city: 'Paris', country: 'France', language: 'French and Englis',  name: 'John', Id: '1' },
     { city: 'Göteborg', country: 'Sweden', language: 'Swedish and English', name: 'Tom', Id: '2'  },
@@ -98,6 +102,7 @@ const PEOPLE = [
 ];
 
 ReactDOM.render(
-    <ViewPersonTable people={PEOPLE}/>,
+    <ViewPersonTable people={PEOPLE} />,
+    
     document.getElementById('content')
 );
