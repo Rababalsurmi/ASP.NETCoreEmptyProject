@@ -58,7 +58,7 @@ class PersonTable extends React.Component {
         });
 
         return (
-            <table>
+            <table class="table">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -76,11 +76,12 @@ class PersonTable extends React.Component {
 
 
 
-class FilterablePersonTable extends React.Component {
+class ViewPersonTable extends React.Component {
   render() {
         return (
             <div>
-                <PersonTable  people={this.props.people}/>
+                <PersonTable people={this.props.people} />
+              
             </div>
         );
     }
@@ -97,6 +98,6 @@ const PEOPLE = [
 ];
 
 ReactDOM.render(
-    <FilterablePersonTable people={PEOPLE} />,
+    <ViewPersonTable people={PEOPLE}/>,
     document.getElementById('content')
 );
