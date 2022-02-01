@@ -19,5 +19,14 @@ namespace ASP.NETCoreEmptyProject.Models
         public LanguageModel language { get; set; }
 
 
+        public PeoplLanguagesModel()
+        {
+            
+        }
+        public PeoplLanguagesModel(int personId, int languageId)
+        {
+            PersonId = personId;
+            LanguageId = languageId;
+        }
     }
 }

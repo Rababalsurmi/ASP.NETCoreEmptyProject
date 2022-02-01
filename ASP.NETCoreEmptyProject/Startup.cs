@@ -17,6 +17,9 @@ using JavaScriptEngineSwitcher.V8;
 using JavaScriptEngineSwitcher.ChakraCore;
 using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
 using React.AspNet;
+using ASP.NETCoreEmptyProject.Models.Interfaces;
+using ASP.NETCoreEmptyProject.Service;
+using ASP.NETCoreEmptyProject.Models.Service;
 
 namespace ASP.NET_Core_Empty_Project
 {
@@ -53,7 +56,9 @@ namespace ASP.NET_Core_Empty_Project
               .AddDefaultTokenProviders()
               .AddEntityFrameworkStores<PeopleDBContext>();
 
-
+            services.AddScoped<IPersonService, PersonService>();
+            services.AddScoped<ICityService, CityService>();
+            services.AddScoped<ILanguageService, LanguageService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddReact();

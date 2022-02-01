@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
-
+using System.Collections.Generic;
 
 namespace ASP.NETCoreEmptyProject.Models
 {
@@ -20,5 +20,12 @@ namespace ASP.NETCoreEmptyProject.Models
         [Required(ErrorMessage = "Please enter a city!"), MaxLength(50), MinLength(3)]
         [Display(Name = "City")]
         public string City { get; set; }
+
+        public int CityId { get; set; }
+
+        public CityModel PersonCity { get; set; }
+
+        [Required]
+        public List<int> Languages { get; set; }
     }
 }

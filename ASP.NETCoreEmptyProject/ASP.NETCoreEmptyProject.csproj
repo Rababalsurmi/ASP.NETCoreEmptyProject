@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\" />
+    <Content Remove="wwwroot\js\react\" />
+    <Content Remove="wwwroot\js\react\components\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\" />
@@ -20,6 +22,10 @@
     <Folder Include="Views\City\" />
     <Folder Include="Views\Language\" />
     <Folder Include="Views\React\" />
+    <Folder Include="wwwroot\js\react\" />
+    <Folder Include="Models\Service\" />
+    <Folder Include="Models\Interfaces\" />
+    <Folder Include="wwwroot\js\react\components\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Controllers\" />
@@ -48,6 +54,8 @@
     <None Remove="Microsoft.ClearScript.V8.Native.osx-x64" />
     <None Remove="JavaScriptEngineSwitcher.ChakraCore" />
     <None Remove="JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64" />
+    <None Remove="Models\Service\" />
+    <None Remove="Models\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.21">
